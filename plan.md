@@ -179,7 +179,7 @@ Day2 PM  本制作（メイン・最長枠／分担したアウトプット仕�
 - [ ] **T8: スクレイピング・ミニデモ素材（repo URL→「使えるように」）**
   対象GitHubリポジトリのURLをCodexに渡して環境を整えさせるデモ手順。作り込まず"驚き"程度。crawl4aiを使う場合は1台で `crawl4ai-setup` 完走確認・WindowsのProactorEventLoop対応を済ませておく。
 - [ ] **T9: Codex/AI習熟ブロック教材（Day1 PM・約70分）**
-  AGENTS.md（指示用・活動ログにしない／32KiB／再利用ルールだけ昇格）・設定（承認/reasoning/config）・スキルの概念と自作（SKILL.md最小形）・振り返りskill運用（learning-log/）。「自分用スキルを1個作る」ハンズオン込み。
+  AGENTS.md（指示用・活動ログにしない／32KiB／再利用ルールだけ昇格）・**設定とセキュリティ（[codex-settings.md](codex-settings.md) を正本：モデル/推論ティアでトークンを守る・権限3段階・実行中スリープ防止・速度標準・⌘+Enter長文必須・コードレビュー インライン/独立・音声入力＋単語登録・プランモード/目標モード/「作成」）**・スキルの概念と自作（SKILL.md最小形）・振り返りskill運用（learning-log/）。「自分用スキルを1個作る」ハンズオン込み。
 
 ---
 

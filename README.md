@@ -9,6 +9,7 @@ Codexを使った社内AI研修（15名・各部署混在・会議室・2日間�
 | [plan.md](plan.md) | **正本**。構成・確定前提・タイムテーブル・気をつけること（出典つき）・Codex実行タスク・小話素材 |
 | [talk-script.md](talk-script.md) | トーク台本（進行キュー）。自己紹介・目的共有から2日通し |
 | [overview.md](overview.md) | 営業向け2日間概要（たたき台・トーン参考） |
+| [codex-settings.md](codex-settings.md) | Codexアプリの設定・セキュリティ ガイド（T9教材／研修推奨設定の早見表つき） |
 
 ## 制作タスクの進捗（plan.md §7）
 
