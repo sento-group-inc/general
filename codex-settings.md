@@ -22,7 +22,8 @@ Day1 PMの習熟ブロックで使う。15人初学者が**最初に整えるべ
 | ブラウザ デベロッパーモード（CDP） | **OFF固定** | フルCDP＝機密ブラウザ内部に到達・データ漏洩リスク（§10） |
 | コンピュータ使用：ロック中の使用 | **OFF** | 不在時に勝手に動く。研修では不要（§11） |
 | コンピュータ使用：Chrome連携 | 原則使わせない | 「あなたのアカウントとして」ログイン済みSaaSに入る（§11） |
-| プラグイン：Box | **有効化（ゼネラル利用中）** | 社内ドキュメント参照。低権限・テスト範囲で（§12） |
+| プラグイン：Box＋Microsoft365 | **有効化**（Box／Teams／SharePoint／Outlook） | ゼネラルのMicrosoft環境に直結。低権限・テスト範囲で（§12） |
+| サイド／下部パネル | 触れる程度でOK | レビュー・ターミナル・ブラウザー・ファイルの場所だけ把握（§14・§15） |
 | カスタム指示 | **おすすめを配布** | [custom-instructions-recommended.md](custom-instructions-recommended.md)（§13） |
 
 ---
@@ -158,8 +159,14 @@ Codexが**他のアプリ**を操作する機能（公式: https://developers.op
 
 - **Box＝有効化する**（ゼネラルが利用中）。「Search and reference your documents」。社内ドキュメントをCodexから参照・引用できる。本制作のインプット源になる。
   - 〔注意〕**テスト範囲・低権限**で接続。不可逆操作（削除・上書き）は人間承認。研修後にConnectorsからDisconnectしてよい。
-- その他コネクタ：Googleドキュメント/スプレッドシート/スライド・GitHub・Gmail・Google Drive 等（ただし今回**Google系は使わない方針**なので無効のまま）。
-- 〔研修方針〕**第三者製MCPは入れない**（公式Codexプラグイン優先）。読み書き権限が初期で広いことがあるので、付与は最小に。
+- **Microsoft 365コネクタ＝有効化する**（ゼネラルのスタックに直結。Googleではなくこちらを使う）。各「プラグインを追加」→OAuth承認。
+  - **Teams**（Summarize Teams and draft follow-ups）：チャネル/会議の要約、フォローアップの下書き。
+  - **SharePoint**（Summarize SharePoint sites and files）：サイト・ファイルの要約。成果物提出先でもあり、参照元としても効く。
+  - **Outlook Email**（Triage Outlook inboxes and draft replies）：受信箱の仕分け・返信下書き。
+  - **Outlook Calendar**（Manage Outlook schedules and meeting changes）：予定の確認・調整。
+  - 〔本制作との接続〕「Teamsの議論を要約→議事録」「SharePointの過去資料を参照→提案書」など、業務インプットがそのまま入る。
+- その他：Googleドキュメント/スプレッドシート/スライド・Gmail・Google Drive 等は**今回Google系は使わない方針なので無効のまま**。GitHubは必要な課題でのみ。
+- 〔研修方針〕**第三者製MCPは入れない**（公式Codexプラグイン優先）。コネクタは読み書き権限が初期で広いことがあるので**最小付与・テスト範囲**。不可逆操作（メール送信・予定変更・削除）は人間承認。研修後はDisconnect可。
 
 ## 13. カスタム指示・パーソナライゼーション
 
@@ -176,3 +183,20 @@ Codexが**他のアプリ**を操作する機能（公式: https://developers.op
 ## 出典メモ（教材作成用）
 
 設定パネルを図解した日本語記事はほぼ無い。要点の出典は公式doc（developers.openai.com/codex）。用語整理に [npaka 4機能の違い](https://note.com/npaka/n/n6ea96a2c929c)、コンピュータ使用の和文スクショに [npaka computer use](https://note.com/npaka/n/nd62f3e1fe802)、コネクタ一覧に [fyve](https://fyve.co.jp/codex/articles/codex-plugins-90-overview)。**設定画面のスクショは自分のCodexアプリで撮るのが最短**（T1/IMAGESで対応）。
+
+---
+
+## 14. サイドパネル（場所だけ把握すればOK）
+
+> 全部は説明しない。「どこに何があるか」だけ。スクショを残す。
+
+- **レビュー**（⌃⇧G）：変更内容を見る／`/review` を走らせる。
+- **ターミナル**：統合ターミナル。コマンド実行・結果確認。
+- **ブラウザー**（⌘T）：組み込みブラウザ（§10）。
+- **ファイル**（⌘P）：ファイルを開く・切り替える。
+
+## 15. 下部パネル（ターミナル）
+
+- アプリ下部に**プロジェクト名のタブ**（例：`Aigassyuku06`）でターミナルが出る。Codexが叩いたコマンドや、自分で打つコマンドがここで動く。
+- 「下部パネル」を一般設定でON（§5）にすると、ヘッダーから開閉できる。
+- 〔研修〕「AIがここで実際にコマンドを動かしている」が見える場所、とだけ伝える。中身の細部は飛ばす。
