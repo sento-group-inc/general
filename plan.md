@@ -58,6 +58,7 @@
 ```
 Day1 AM  なぜAI（拡張感覚の小話）
          → セットアップ（耐える／サポート時間つき）
+         → 自由探索30分（プライベートな興味から自由に触る）
          → 性格診断HTML制作【第1のオー！】
 
 Day1 PM  門限の小話（モデリング思考）
@@ -86,6 +87,7 @@ Day2 PM  本制作（メイン・最長枠／分担したアウトプット仕�
 |---|---|---|
 | 9:00 | コンセプトマップ提示＋小話「なぜAIか＝拡張感覚」（道具の身体化／女子高生のSNS多人格） | — |
 | 9:20 | セットアップ（Codexアプリ導入・サインイン・作業Dir作成・基本操作）※サポート時間込み、詰まる前提 | 動く環境 |
+| 10:30 | **自由探索（30分）**：仕事に限定せず、趣味・旅行・料理・学習など自分が気になることをCodexで自由に試す。「何ができるか」を自分の興味から体感する | 自由制作物または発見メモ |
 | 11:00 | 小話「性格診断」→ 複数の占い（動物占い・ホロスコープ・MBTI等）を統合させる | — |
 | 11:15 | **性格診断HTML制作【第1のオー！】**：複数インプットをCodexに統合→自分の取扱説明書をHTML出力 | 性格診断HTML（SharePoint提出） |
 | 12:00 | 午前クローズ | — |
@@ -164,7 +166,7 @@ Day2 PM  本制作（メイン・最長枠／分担したアウトプット仕�
 
 ### 運用・進行
 10. **APIキー/PAT/パスワードは必ずプレースホルダ**（`YOUR_XXX`）。AIに代行入力させない旨を明記。
-11. **セットアップは事前資料＋当日サポート**。事前依頼しても全員はやらない前提で、当日サポート時間を確保しつつ「耐えてもらう」。**直後に性格診断HTMLで即・成果体験**を入れて苦行を報わせる。
+11. **セットアップは事前資料＋当日サポート**。事前依頼しても全員はやらない前提で、当日サポート時間を確保しつつ「耐えてもらう」。動作確認後は**自由探索30分 → 性格診断HTML**の順で、私的な興味から触る体験と見える成果を連続させる。
 12. **見える成果（オー！）を最優先**。「普段の仕事が一瞬で終わった」「頭の中が高速で形になった」「HTMLで具体化できた」という驚き体験を各所に配置。
 13. **コンセプトマップは縦長（上→下）**。横長レイアウト・left to right は使わない。
 
@@ -194,15 +196,15 @@ Day2 PM  本制作（メイン・最長枠／分担したアウトプット仕�
 - [ ] **T8: スクレイピング・ミニデモ素材（repo URL→「使えるように」）**
   対象GitHubリポジトリのURLをCodexに渡して環境を整えさせるデモ手順。作り込まず"驚き"程度。crawl4aiを使う場合は1台で `crawl4ai-setup` 完走確認・WindowsのProactorEventLoop対応を済ませておく。
 - [ ] **T9: Codex/AI習熟ブロック教材（Day1 PM・約70分）**
-  AGENTS.md（指示用・活動ログにしない／32KiB／再利用ルールだけ昇格）・**設定とセキュリティ（[codex-settings.md](codex-settings.md) を正本：モデル/推論ティアでトークンを守る・権限3段階・実行中スリープ防止・速度標準・⌘+Enter長文必須・コードレビュー インライン/独立・音声入力＋単語登録・プランモード/目標モード/「作成」・メモリ既定オフ・ブラウザ/コンピュータ使用のセキュリティ・プラグイン）**・**カスタム指示の配布（[custom-instructions-recommended.md](custom-instructions-recommended.md) を全員のglobalへ）**・**プラグイン有効化：Box＋Microsoft365（Teams／SharePoint／Outlook Email／Outlook Calendar）**・スキルの概念と自作（SKILL.md最小形）・振り返りskill運用（learning-log/）。「自分用スキルを1個作る」ハンズオン込み。**Planモードを使う（`/plan`）／うまくいった指示をAGENTS.mdに永続化／良いAGENTS.mdの中身・`/init`**（[codex-settings.md](codex-settings.md) §13b・13c）。設定画面のスクショは自前で撮る（IMAGES）。
+  AGENTS.md（指示用・活動ログにしない／32KiB／再利用ルールだけ昇格）・**設定とセキュリティ（[設定教材](site/src/content/docs/reference/codex-settings.md) を正本：モデル/推論ティアでトークンを守る・権限3段階・実行中スリープ防止・速度標準・⌘+Enter長文必須・コードレビュー インライン/独立・音声入力＋単語登録・プランモード/目標モード/「作成」・メモリ既定オフ・ブラウザ/コンピュータ使用のセキュリティ・プラグイン）**・**カスタム指示の配布（[配布教材](site/src/content/docs/reference/custom-instructions.md) を全員のglobalへ）**・**プラグイン有効化：Box＋Microsoft365（Teams／SharePoint／Outlook Email／Outlook Calendar）**・スキルの概念と自作（SKILL.md最小形）・振り返りskill運用（learning-log/）。「自分用スキルを1個作る」ハンズオン込み。**Planモードを使う（`/plan`）／うまくいった指示をAGENTS.mdに永続化／良いAGENTS.mdの中身・`/init`**（設定教材 §13b・13c）。設定画面のスクショは自前で撮る（IMAGES）。
 - [ ] **T10: スラッシュコマンド早見表ページ（独立）**
-  [slash-commands.md](slash-commands.md) を正本。表形式で振り返りながら使える独立ページに。
+  [公開教材](site/src/content/docs/reference/slash-commands.md) を正本。表形式で振り返りながら使える独立ページに。
 - [ ] **T11: 「うまくいかない時」ガイドページ（独立）**
-  [troubleshooting.md](troubleshooting.md) を正本。原因はInput不足／プロンプト不明確（→grill-meで深掘り）の2軸＋Planモード＋失敗の資産化。
+  [公開教材](site/src/content/docs/reference/troubleshooting.md) を正本。原因はInput不足／プロンプト不明確（→grill-meで深掘り）の2軸＋Planモード＋失敗の資産化。
 - [ ] **T12: セッション別「やってみることまとめ」＆おかわり課題**
-  [session-exercises.md](session-exercises.md) を正本。各セッションに まとめ＋早い人向けおかわり課題。バディ制と併用。
+  [公開教材](site/src/content/docs/reference/session-exercises.md) を正本。各セッションに まとめ＋早い人向けおかわり課題。バディ制と併用。
 - [ ] **T13: AGENTS.md育て方教材**
-  /init→編集、良いAGENTS.md6項目、永続化、2回ミスでレトロ更新（[codex-settings.md](codex-settings.md) §13b）。T9内で扱う。
+  /init→編集、良いAGENTS.md6項目、永続化、2回ミスでレトロ更新（[設定教材](site/src/content/docs/reference/codex-settings.md) §13b）。T9内で扱う。
 
 ---
 

@@ -1,0 +1,35 @@
+---
+import DefaultTableOfContents from '@astrojs/starlight/components/TableOfContents.astro';
+import { Icon } from '@astrojs/starlight/components';
+const isPersonalityPage = Astro.url.pathname === '/day-1/personality-html/';
+const sections = [
+	['now', '今ここ'],
+	['input', 'インプット'],
+	['steps', '手順'],
+	['prompt', 'プロンプト例'],
+	['checkpoint', 'チェックポイント'],
+	['deliverable', '成果物'],
+	['next', '次へ'],
+];
+---
+{isPersonalityPage ? (
+	<nav class="session-toc" aria-labelledby="session-toc-title">
+		<h2 id="session-toc-title">このセッションの目次</h2>
+		<ol>{sections.map(([id, label], index) => <li><a href={`#${id}`} aria-current={index === 0 ? 'true' : undefined}>{label}</a><Icon class="toc-icon" name={index === 0 ? 'check-circle' : 'circle'} size="1rem" /></li>)}</ol>
+	</nav>
+) : <DefaultTableOfContents />}
+<script>
+	const links = [...document.querySelectorAll<HTMLAnchorElement>('.session-toc a')];
+	if (links.length) {
+		const observer = new IntersectionObserver((entries) => {
+			const active = entries.find((entry) => entry.isIntersecting);
+			if (!active) return;
+			links.forEach((link) => link.removeAttribute('aria-current'));
+			document.querySelector<HTMLAnchorElement>(`.session-toc a[href="#${active.target.id}"]`)?.setAttribute('aria-current', 'true');
+		}, { rootMargin: '-18% 0px -68% 0px' });
+		links.forEach((link) => {
+			const target = document.querySelector(link.hash);
+			if (target) observer.observe(target);
+		});
+	}
+</script>

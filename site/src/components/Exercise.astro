@@ -1,0 +1,9 @@
+---
+import { Icon } from '@astrojs/starlight/components';
+interface Props { steps: string[]; }
+const { steps } = Astro.props;
+---
+<section id="steps" class="session-section">
+	<h2><Icon name="list-format" size="1.45rem" />手順</h2>
+	<ol class="exercise-list">{steps.map((step) => <li><span>{step}</span></li>)}</ol>
+</section>

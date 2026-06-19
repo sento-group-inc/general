@@ -1,3 +1,8 @@
+---
+title: おすすめカスタム指示
+description: Personalizationへそのまま貼れる研修用テンプレート
+---
+
 # おすすめカスタム指示（配布用・そのまま貼れる）
 
 Codexデスクトップアプリの **Personalization → Custom instructions** に貼る。これは個人グローバル指示（`~/.codex/AGENTS.md`）に書き込まれ、**全プロジェクト共通**で効く。案件・チーム固有のルールはプロジェクト直下の `AGENTS.md` に書く（そちらが優先）。

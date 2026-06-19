@@ -1,0 +1,18 @@
+---
+import { Icon } from '@astrojs/starlight/components';
+interface Props { items: string[]; }
+const { items } = Astro.props;
+---
+<section id="checkpoint" class="session-section">
+	<h2><Icon name="check-circle" size="1.45rem" />チェックポイント</h2>
+	<div class="check-list">{items.map((item, index) => <label><input type="checkbox" data-check={index} /><span>{item}</span></label>)}</div>
+</section>
+<script>
+	const key = `training-checks:${location.pathname}`;
+	const checks = [...document.querySelectorAll<HTMLInputElement>('[data-check]')];
+	const saved = JSON.parse(localStorage.getItem(key) ?? '[]');
+	checks.forEach((check, index) => {
+		check.checked = Boolean(saved[index]);
+		check.addEventListener('change', () => localStorage.setItem(key, JSON.stringify(checks.map((item) => item.checked))));
+	});
+</script>
