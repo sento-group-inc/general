@@ -1,0 +1,19 @@
+---
+import config from 'virtual:starlight/user-config';
+import Search from 'virtual:starlight/components/Search';
+import SiteTitle from 'virtual:starlight/components/SiteTitle';
+const shouldRenderSearch = config.pagefind || config.components.Search !== '@astrojs/starlight/components/Search.astro';
+---
+<div class="training-header">
+	<div class="training-header-title"><SiteTitle /></div>
+	<div class="training-header-search print:hidden">{shouldRenderSearch && <Search />}</div>
+	<div class="training-progress print:hidden"><span>Day 1 進捗</span><progress value="35" max="100">35%</progress><span>35%</span></div>
+	<details class="learner-menu print:hidden">
+		<summary>受講者メニュー　⌄</summary>
+		<nav aria-label="受講者メニュー">
+			<a href="/start/">はじめに戻る</a>
+			<a href="/reference/session-exercises/">課題一覧を見る</a>
+			<a href="/after/">研修後のサポート</a>
+		</nav>
+	</details>
+</div>

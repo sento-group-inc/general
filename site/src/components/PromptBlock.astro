@@ -1,0 +1,32 @@
+---
+import { Icon } from '@astrojs/starlight/components';
+interface Props { text: string; }
+const { text } = Astro.props;
+---
+<section id="prompt" class="prompt-panel" aria-labelledby="prompt-title">
+	<div class="prompt-panel-header"><span id="prompt-title">プロンプト例</span><span>そのまま使えます</span></div>
+	<pre class="prompt-text"><code>{text}</code></pre>
+	<button class="copy-button" type="button" data-copy-prompt><Icon name="copy" size="1rem" /><span>コピー</span></button>
+</section>
+<script>
+	document.querySelectorAll('[data-copy-prompt]').forEach((button) => {
+		button.addEventListener('click', async () => {
+			const text = button.parentElement?.querySelector('.prompt-text')?.textContent ?? '';
+			try {
+				await navigator.clipboard.writeText(text.trim());
+			} catch {
+				const textarea = document.createElement('textarea');
+				textarea.value = text.trim();
+				textarea.style.position = 'fixed';
+				textarea.style.opacity = '0';
+				document.body.append(textarea);
+				textarea.select();
+				document.execCommand('copy');
+				textarea.remove();
+			}
+			const label = button.querySelector('span');
+			if (label) label.textContent = 'コピー済み';
+			setTimeout(() => { if (label) label.textContent = 'コピー'; }, 1600);
+		});
+	});
+</script>

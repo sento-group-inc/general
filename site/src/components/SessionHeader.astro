@@ -1,0 +1,13 @@
+---
+import { Icon } from '@astrojs/starlight/components';
+interface Props { day: string; title: string; purpose: string; duration: string; }
+const { day, title, purpose, duration } = Astro.props;
+---
+<header id="now" class="session-header">
+	<div class="session-kicker"><span class="current-badge">今ここ</span><span class="day-label">{day}</span></div>
+	<h1 class="session-title">{title}</h1>
+	<div class="session-meta">
+		<div class="meta-item"><Icon name="target" size="1.45rem" /><span class="meta-label">目的</span><span>{purpose}</span></div>
+		<div class="meta-item"><Icon name="clock" size="1.45rem" /><span class="meta-label">所要時間</span><span>{duration}</span></div>
+	</div>
+</header>

@@ -1,0 +1,29 @@
+---
+title: 性格診断HTML
+description: 複数のインプットから自分の取扱説明書を作る
+tableOfContents:
+  minHeadingLevel: 2
+  maxHeadingLevel: 2
+---
+
+import SessionHeader from '../../../components/SessionHeader.astro';
+import ConceptMap from '../../../components/ConceptMap.astro';
+import Exercise from '../../../components/Exercise.astro';
+import PromptBlock from '../../../components/PromptBlock.astro';
+import Checkpoint from '../../../components/Checkpoint.astro';
+import Deliverable from '../../../components/Deliverable.astro';
+import { Icon } from '@astrojs/starlight/components';
+
+<div class="session-shell">
+	<SessionHeader day="Day 1" title="性格診断HTML" purpose="複数の診断結果を統合し、自分の取扱説明書をHTMLで作る" duration="45分" />
+	<ConceptMap items={['ホロスコープ画像', '動物占いの結果', '自分の補足情報', 'HTMLという成果物']} />
+	<div class="work-grid">
+		<Exercise steps={['素材を2つ以上用意する', 'プロンプトをコピーしてCodexへ渡す', '出力されたHTMLをブラウザで開く', '自分らしくない箇所を修正する', '完成したHTMLを保存する']} />
+		<PromptBlock text={`ホロスコープ画像と動物占いの結果を読み取り、\n共通点と違いを統合して、私の取扱説明書を作ってください。\n\n条件：\n- 強み、苦手、うまく働く環境、周囲へのお願いを含める\n- 診断結果を断定せず、本人が確かめられる表現にする\n- 1つのHTMLファイルで作成する\n- 読みやすく、私らしいデザインにする`} />
+	</div>
+	<div class="result-grid">
+		<Checkpoint items={['2種類以上の素材を渡した', '診断結果の共通点と違いが整理されている', '自分らしくない箇所を修正した', 'ブラウザでレイアウトを確認した']} />
+		<Deliverable description="自分の取扱説明書（HTMLファイル）" filename="watashi-no-toriatsukai.html" />
+	</div>
+	<a id="next" class="next-session" href="/day-1/prompt-design/"><span class="next-arrow"><Icon name="right-arrow" size="1.25rem" /></span><strong>AIへの指示設計</strong><time>所要時間：45分</time></a>
+</div>

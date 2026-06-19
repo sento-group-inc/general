@@ -1,0 +1,9 @@
+---
+import { Icon } from '@astrojs/starlight/components';
+interface Props { items: string[]; }
+const { items } = Astro.props;
+---
+<section id="input" class="session-section">
+	<h2><Icon name="open-book" size="1.45rem" />インプット</h2>
+	<div class="concept-tags">{items.map((item) => <span class="concept-tag">{item}</span>)}</div>
+</section>

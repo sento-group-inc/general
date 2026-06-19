@@ -1,0 +1,10 @@
+---
+import { Icon } from '@astrojs/starlight/components';
+interface Props { description: string; filename: string; }
+const { description, filename } = Astro.props;
+---
+<section id="deliverable" class="session-section">
+	<h2><Icon name="document" size="1.45rem" />成果物</h2>
+	<p>{description}</p>
+	<div class="deliverable-file"><Icon name="seti:html" size="1.3rem" /><code>{filename}</code></div>
+</section>
