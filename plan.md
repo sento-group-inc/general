@@ -33,6 +33,21 @@
 | **環境制約** | スマホ不可 / Google系不可（NotebookLM等なし）/ GitHubアカウント新規作成不可（既存パブリックリポジトリ利用はOK）/ PCはWindows・8GB以上想定 |
 | **Day1発表** | 3人×5組の**グループ発表**（25〜35分） |
 | **Day2発表** | **1人5分×15名＝75分**。制作も見せるが主軸は「2日間の振り返り」 |
+| **講師体制** | **2人体制**＋**バディ制**（先に通った人が隣を助ける）。進度バラつきを吸収 |
+
+---
+
+## 1b. 事前に準備しておくべきこと（ゼネラル側で）
+
+当日朝のセットアップで全員が止まらないよう、**ゼネラル側で事前に済ませてもらう**（ITの細部は向こうで解決してもらう前提）。
+
+- [ ] **Codexデスクトップアプリを各PCにインストール済みにしておく**（Microsoft Store / winget）。
+- [ ] **有料ChatGPTアカウントでサインインまで通しておく**（＝当日の最大の詰まりを事前に消す）。
+- [ ] ワークスペースで**Codexが有効化**されているか（管理者設定）。
+- [ ] 社内プロキシで `auth.openai.com/oauth` が通るか（TLSインスペクション下のOAuth失敗は既知。通らなければデバイスコード認証/CA指定で回避）。
+- [ ] **Boxプラグイン**等、当日使うコネクタの接続可否を確認。
+
+当日はこれらの**動作確認とサポート**に時間を充てる（ゼロから入れる時間にしない）。
 
 ---
 
@@ -171,7 +186,7 @@ Day2 PM  本制作（メイン・最長枠／分担したアウトプット仕�
 - [ ] **T4: TOC業務棚卸しワークショップ進行台本**
   ポストイット/ホワイトボード手順、問いかけ、制約からの順序付け。出力＝**ロードマップ＋実施事項一覧TSV**のテンプレ。
 - [ ] **T5: 第1〜第2のオー！の課題設計**
-  ①性格診断HTML課題：**ホロスコープ（[鏡リュウジ](https://kagamiryuji.jp/horoscope/)）の画像判定**＋**動物占い（[aoi-project](https://aoi-project.com/animal/)）**などの複数インプットをCodexに統合させ、自分の取扱説明書をHTML出力。**画像の意味が自分でわからなくてもAIが読み取れる**＝「インプットを渡せば統合してくれる」を体感させる狙い。②Day1 PM共通お題＋crawl4aiスクレイピング体験（対象URL・浅い深さを固定したラップ済みスクリプト同梱）。
+  ①性格診断HTML課題：**ホロスコープ（[鏡リュウジ](https://kagamiryuji.jp/horoscope/)）の画像判定**＋**動物占い（[aoi-project](https://aoi-project.com/animal/)）**などの複数インプットをCodexに統合させ、自分の取扱説明書をHTML出力。**画像の意味が自分でわからなくてもAIが読み取れる**＝「インプットを渡せば統合してくれる」を体感させる狙い。②Day1 PMの練習制作＝**タスク管理（ToDo）アプリをHTML/CSS/JSで作る**（[mescius quickstart](https://devlog.mescius.jp/ai-agent-codex-quickstart/) をそのまま採用・記事の画像も使う）。プロンプト例「HTML・CSS・JavaScriptでシンプルなToDoリストアプリを作って」。③ミニデモ＝GitHubリポジトリURL→「これ使えるようにして」。※**オートメーション機能は扱わない**。
 - [ ] **T6: アウトプット4種のテンプレ＋インプット渡し方**
   提案書／月次報告書／技術資料／AI利用方針。各型に過去フォーマットの渡し方、Web情報が要る場合の軽量取得手順をセット。
 - [ ] **T7: 各セッションのコンセプトマップ**
@@ -179,7 +194,25 @@ Day2 PM  本制作（メイン・最長枠／分担したアウトプット仕�
 - [ ] **T8: スクレイピング・ミニデモ素材（repo URL→「使えるように」）**
   対象GitHubリポジトリのURLをCodexに渡して環境を整えさせるデモ手順。作り込まず"驚き"程度。crawl4aiを使う場合は1台で `crawl4ai-setup` 完走確認・WindowsのProactorEventLoop対応を済ませておく。
 - [ ] **T9: Codex/AI習熟ブロック教材（Day1 PM・約70分）**
-  AGENTS.md（指示用・活動ログにしない／32KiB／再利用ルールだけ昇格）・**設定とセキュリティ（[codex-settings.md](codex-settings.md) を正本：モデル/推論ティアでトークンを守る・権限3段階・実行中スリープ防止・速度標準・⌘+Enter長文必須・コードレビュー インライン/独立・音声入力＋単語登録・プランモード/目標モード/「作成」・メモリ既定オフ・ブラウザ/コンピュータ使用のセキュリティ・プラグイン）**・**カスタム指示の配布（[custom-instructions-recommended.md](custom-instructions-recommended.md) を全員のglobalへ）**・**プラグイン有効化：Box＋Microsoft365（Teams／SharePoint／Outlook Email／Outlook Calendar）**・スキルの概念と自作（SKILL.md最小形）・振り返りskill運用（learning-log/）。「自分用スキルを1個作る」ハンズオン込み。設定画面のスクショは自前で撮る（IMAGES）。
+  AGENTS.md（指示用・活動ログにしない／32KiB／再利用ルールだけ昇格）・**設定とセキュリティ（[codex-settings.md](codex-settings.md) を正本：モデル/推論ティアでトークンを守る・権限3段階・実行中スリープ防止・速度標準・⌘+Enter長文必須・コードレビュー インライン/独立・音声入力＋単語登録・プランモード/目標モード/「作成」・メモリ既定オフ・ブラウザ/コンピュータ使用のセキュリティ・プラグイン）**・**カスタム指示の配布（[custom-instructions-recommended.md](custom-instructions-recommended.md) を全員のglobalへ）**・**プラグイン有効化：Box＋Microsoft365（Teams／SharePoint／Outlook Email／Outlook Calendar）**・スキルの概念と自作（SKILL.md最小形）・振り返りskill運用（learning-log/）。「自分用スキルを1個作る」ハンズオン込み。**Planモードを使う（`/plan`）／うまくいった指示をAGENTS.mdに永続化／良いAGENTS.mdの中身・`/init`**（[codex-settings.md](codex-settings.md) §13b・13c）。設定画面のスクショは自前で撮る（IMAGES）。
+- [ ] **T10: スラッシュコマンド早見表ページ（独立）**
+  [slash-commands.md](slash-commands.md) を正本。表形式で振り返りながら使える独立ページに。
+- [ ] **T11: 「うまくいかない時」ガイドページ（独立）**
+  [troubleshooting.md](troubleshooting.md) を正本。原因はInput不足／プロンプト不明確（→grill-meで深掘り）の2軸＋Planモード＋失敗の資産化。
+- [ ] **T12: セッション別「やってみることまとめ」＆おかわり課題**
+  [session-exercises.md](session-exercises.md) を正本。各セッションに まとめ＋早い人向けおかわり課題。バディ制と併用。
+- [ ] **T13: AGENTS.md育て方教材**
+  /init→編集、良いAGENTS.md6項目、永続化、2回ミスでレトロ更新（[codex-settings.md](codex-settings.md) §13b）。T9内で扱う。
+
+---
+
+## 7b. 参考記事（採用・出典）
+
+- [mescius Codex quickstart](https://devlog.mescius.jp/ai-agent-codex-quickstart/)：**ToDoアプリ例を採用・画像も使用**（練習制作）。
+- [ai-driven note](https://note.com/ai_driven/n/n2e2516c28c16)：AGENTS.mdの育て方。
+- [公式 app/commands](https://developers.openai.com/codex/app/commands)：スラッシュコマンド（アプリ版7つ）。
+- [公式 Windows](https://developers.openai.com/codex/app/windows) / [Store不可時のwinget回避](https://docs.bswen.com/blog/2026-02-27-codex-winget-install/)：セットアップ。
+- [codex#6849](https://github.com/openai/codex/issues/6849)：社内プロキシ/TLSインスペクションでのOAuth失敗（事前準備の根拠）。
 
 ---
 
