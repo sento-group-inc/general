@@ -1,0 +1,107 @@
+---
+// 研修ライブ用「現在地」バナー
+// 全端末で共有された「現在地（いま講師が映しているページ）」を表示し、
+// ワンタップでそのページへ飛べるようにする。
+// スライス1: 保存先は localStorage（単一端末でのUI確認用）。
+// スライス2で /api/now（Vercel KV）に差し替える。
+import { getCollection } from 'astro:content';
+
+const docs = await getCollection('docs');
+
+// 各ページの path（共有キー）→ ラベル の対応表をビルド時に生成
+const pages = docs
+	.map((entry) => {
+		const id = entry.id;
+		const path = id === 'index' || id === '' ? '/' : `/${id}/`;
+		return { path, label: entry.data.title };
+	})
+	.sort((a, b) => a.path.localeCompare(b.path));
+
+// 現在表示しているページの path
+const currentPath = Astro.url.pathname.endsWith('/')
+	? Astro.url.pathname
+	: `${Astro.url.pathname}/`;
+---
+
+<div
+	class="current-page-banner print:hidden"
+	data-pages={JSON.stringify(pages)}
+	data-current={currentPath}
+	hidden
+>
+	<span class="cpb-label">
+		<span class="cpb-dot" aria-hidden="true"></span>
+		<span class="cpb-text">研修はいまこちら！</span>
+	</span>
+	<a class="cpb-target" href="/">—</a>
+	<span class="cpb-here" hidden>✓ いま表示中のページ</span>
+	<button type="button" class="cpb-set">📍 ここを現在地にする</button>
+</div>
+
+<script>
+	const STORAGE_KEY = 'training-current-path';
+
+	// --- 保存先（スライス1: localStorage） ---------------------------------
+	// スライス2でこの2関数の中身を /api/now の fetch に差し替える。
+	async function getCurrent(): Promise<string | null> {
+		return localStorage.getItem(STORAGE_KEY);
+	}
+	async function setCurrent(path: string): Promise<void> {
+		localStorage.setItem(STORAGE_KEY, path);
+		// 同一ブラウザの別タブにも即時反映（デモ用）
+		window.dispatchEvent(new StorageEvent('storage', { key: STORAGE_KEY, newValue: path }));
+	}
+	// ----------------------------------------------------------------------
+
+	function init() {
+		const banner = document.querySelector<HTMLElement>('.current-page-banner');
+		if (!banner) return;
+
+		const pages: { path: string; label: string }[] = JSON.parse(banner.dataset.pages || '[]');
+		const currentPath = banner.dataset.current || '/';
+		const labelOf = (path: string) => pages.find((p) => p.path === path)?.label ?? path;
+
+		const targetLink = banner.querySelector<HTMLAnchorElement>('.cpb-target')!;
+		const hereTag = banner.querySelector<HTMLElement>('.cpb-here')!;
+		const setBtn = banner.querySelector<HTMLButtonElement>('.cpb-set')!;
+
+		function render(path: string | null) {
+			if (!path) {
+				banner.hidden = true;
+				return;
+			}
+			banner.hidden = false;
+			const isHere = path === currentPath;
+			targetLink.textContent = labelOf(path);
+			targetLink.href = path;
+			targetLink.hidden = isHere;
+			hereTag.hidden = !isHere;
+			// 自分が現在地にいるときは「現在地にする」ボタンは押す意味がないので控えめに
+			setBtn.disabled = isHere;
+		}
+
+		async function refresh() {
+			render(await getCurrent());
+		}
+
+		setBtn.addEventListener('click', async () => {
+			await setCurrent(currentPath);
+			await refresh();
+		});
+
+		// 別タブ/別端末の更新を拾う
+		window.addEventListener('storage', (e) => {
+			if (e.key === STORAGE_KEY) render(e.newValue);
+		});
+
+		refresh();
+		// 5秒ポーリング（スライス2の /api/now でも同じ周期で動く）
+		setInterval(refresh, 5000);
+	}
+
+	if (document.readyState === 'loading') {
+		document.addEventListener('DOMContentLoaded', init);
+	} else {
+		init();
+	}
+</script>
