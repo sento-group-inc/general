@@ -57,7 +57,11 @@ export const GET: APIRoute = async () => {
 
 export const POST: APIRoute = async ({ request }) => {
 	const body = (await request.json().catch(() => ({}))) as { path?: unknown };
-	const path = typeof body.path === 'string' && body.path.startsWith('/') ? body.path : null;
+	// 同一オリジンの絶対パスのみ許可（"//host" 等のプロトコル相対URL＝外部リダイレクトを弾く）
+	const path =
+		typeof body.path === 'string' && body.path.startsWith('/') && !body.path.startsWith('//')
+			? body.path
+			: null;
 	if (!path) return json({ error: 'valid path required' }, 400);
 	try {
 		if (hasKV) await redis(['SET', KEY, path]);

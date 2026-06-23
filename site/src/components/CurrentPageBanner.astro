@@ -1,9 +1,8 @@
 ---
-// 研修ライブ用「現在地」バナー
-// 全端末で共有された「現在地（いま講師が映しているページ）」を表示し、
+// 研修ライブ用「研修はいまこちら！」バナー
+// 全端末で共有された現在地（いま講師が映しているページ）を表示し、
 // ワンタップでそのページへ飛べるようにする。
-// スライス1: 保存先は localStorage（単一端末でのUI確認用）。
-// スライス2で /api/now（Vercel KV）に差し替える。
+// 共有値は /api/now（Vercel KV / Upstash Redis）経由で読み書きする。
 import { getCollection } from 'astro:content';
 
 const docs = await getCollection('docs');
@@ -72,7 +71,8 @@ const currentPath = Astro.url.pathname.endsWith('/')
 		const setBtn = banner.querySelector<HTMLButtonElement>('.cpb-set')!;
 
 		function render(path: string | null) {
-			if (!path) {
+			// 既知のページ以外（外部URL等）は無視して表示しない（二重の安全策）
+			if (!path || !pages.some((p) => p.path === path)) {
 				banner.hidden = true;
 				return;
 			}
