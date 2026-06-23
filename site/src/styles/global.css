@@ -373,3 +373,13 @@ body:has(.session-shell) main > .content-panel:nth-child(2) { padding-top: 2rem;
 	.current-page-banner { font-size: 0.85rem; padding: 0.5rem 0.75rem; }
 	.cpb-set { width: 100%; margin-inline-start: 0; order: 3; }
 }
+
+/* 固定バナー分の余白を各スクロール領域の下に確保（本文の前へ/次へ・左サイドバー・右目次が隠れないように） */
+:root { --cpb-height: 4.5rem; }
+.main-pane,
+.sidebar-content,
+.right-sidebar-panel { padding-block-end: var(--cpb-height); }
+@media (max-width: 50rem) {
+	/* モバイルはボタンが全幅で1行増えるぶん高くなる */
+	:root { --cpb-height: 7rem; }
+}
