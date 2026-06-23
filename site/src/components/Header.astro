@@ -2,8 +2,10 @@
 import config from 'virtual:starlight/user-config';
 import Search from 'virtual:starlight/components/Search';
 import SiteTitle from 'virtual:starlight/components/SiteTitle';
+import CurrentPageBanner from './CurrentPageBanner.astro';
 const shouldRenderSearch = config.pagefind || config.components.Search !== '@astrojs/starlight/components/Search.astro';
 ---
+<CurrentPageBanner />
 <div class="training-header">
 	<div class="training-header-title"><SiteTitle /></div>
 	<div class="training-header-search print:hidden">{shouldRenderSearch && <Search />}</div>

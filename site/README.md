@@ -1,3 +1,23 @@
+# AI研修 教材サイト（Astro Starlight）
+
+## 研修ライブ用「研修はいまこちら！」バナー
+
+研修中、講師がいま映しているページを全端末で共有し、受講者がワンタップで飛べる機能。
+
+- 全ページ下部にバナー（`src/components/CurrentPageBanner.astro`）。5秒ごとに現在地を取得。
+- 「📍 ここを現在地にする」で誰でも現在地を更新できる（役割分けなし）。
+- 共有値は API ルート `src/pages/api/now.ts` 経由で Vercel KV(Upstash Redis) に保存。トークンはサーバ側のみで使い、クライアントには露出しない。
+
+### Vercel KV のつなぎ方（本番で同期させる場合）
+
+1. Vercel ダッシュボード → 対象プロジェクト → **Storage** → **Create / Connect** で **Upstash Redis（KV）** をワンクリック追加。
+2. 環境変数（`KV_REST_API_URL` / `KV_REST_API_TOKEN`、または `UPSTASH_REDIS_REST_URL` / `UPSTASH_REDIS_REST_TOKEN`）がプロジェクトに自動注入される。手動コピペ不要。
+3. 再デプロイすれば全端末で同期する。
+
+> 環境変数が未設定のとき（ローカル `npm run dev` など）は、API がプロセス内メモリにフォールバックする。同一サーバへのアクセスなら動作確認できるが、デプロイをまたぐ永続化はされない。
+
+---
+
 # Starlight Starter Kit: Basics
 
 [![Built with Starlight](https://astro.badg.es/v2/built-with-starlight/tiny.svg)](https://starlight.astro.build)
