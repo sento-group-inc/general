@@ -22,3 +22,5 @@ pnpm-debug.log*
 
 # vercel adapter output
 .vercel/
+.vercel
+.env*.local
