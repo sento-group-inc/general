@@ -39,17 +39,23 @@ const currentPath = Astro.url.pathname.endsWith('/')
 </div>
 
 <script>
-	const STORAGE_KEY = 'training-current-path';
-
-	// --- 保存先（スライス1: localStorage） ---------------------------------
-	// スライス2でこの2関数の中身を /api/now の fetch に差し替える。
+	// --- 保存先: /api/now（Vercel KV / Upstash Redis） --------------------
 	async function getCurrent(): Promise<string | null> {
-		return localStorage.getItem(STORAGE_KEY);
+		try {
+			const res = await fetch('/api/now', { cache: 'no-store' });
+			if (!res.ok) return null;
+			const data = (await res.json()) as { path?: string | null };
+			return data.path ?? null;
+		} catch {
+			return null;
+		}
 	}
 	async function setCurrent(path: string): Promise<void> {
-		localStorage.setItem(STORAGE_KEY, path);
-		// 同一ブラウザの別タブにも即時反映（デモ用）
-		window.dispatchEvent(new StorageEvent('storage', { key: STORAGE_KEY, newValue: path }));
+		await fetch('/api/now', {
+			method: 'POST',
+			headers: { 'Content-Type': 'application/json' },
+			body: JSON.stringify({ path }),
+		});
 	}
 	// ----------------------------------------------------------------------
 
@@ -87,11 +93,6 @@ const currentPath = Astro.url.pathname.endsWith('/')
 		setBtn.addEventListener('click', async () => {
 			await setCurrent(currentPath);
 			await refresh();
-		});
-
-		// 別タブ/別端末の更新を拾う
-		window.addEventListener('storage', (e) => {
-			if (e.key === STORAGE_KEY) render(e.newValue);
 		});
 
 		refresh();

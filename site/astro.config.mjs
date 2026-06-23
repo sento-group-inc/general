@@ -1,10 +1,13 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
 import starlight from '@astrojs/starlight';
+import vercel from '@astrojs/vercel';
 
 // https://astro.build/config
 export default defineConfig({
 	site: 'https://general-ai-seminar.vercel.app',
+	// 教材ページは従来どおり静的（プリレンダ）。/api/now のみ prerender=false でサーバ関数になる。
+	adapter: vercel(),
 	integrations: [
 		starlight({
 			title: 'AI研修',
