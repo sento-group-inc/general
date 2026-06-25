@@ -1,0 +1,67 @@
+---
+title: 振り返りskill（reflect）
+description: セッション終わりに learning-log/ へ記録し、100選の元データを溜める
+---
+
+import ProgressMap from '../../../../components/ProgressMap.astro';
+import SectionHead from '../../../../components/training/SectionHead.astro';
+import StepFlow from '../../../../components/training/StepFlow.astro';
+import Step from '../../../../components/training/Step.astro';
+import Callout from '../../../../components/training/Callout.astro';
+
+<ProgressMap current="day1-pm" />
+
+<SectionHead no="10" title="振り返りskill（reflect）" subtitle="失敗も成功も learning-log/ に残し、AGENTS.md にはルールだけ昇格する" />
+
+振り返りskillは、セッションの区切りごとに `learning-log/` へ追記するためのSkillです。  
+2日間の記録が、最後の **AI活用100選** の材料になります。
+
+## 何をするSkillか
+
+| 書く場所 | 内容 |
+|---|---|
+| `learning-log/YYYY-MM-DD.md` | できたこと、詰まったこと、直し方、使えた型 |
+| AGENTS.md | 生ログは書かない。再利用ルールだけを後から昇格 |
+
+## セットアップ
+
+<Callout variant="note" title="これは講師配布のSkill">
+  `reflect` は、この研修内でゼロから作るSkillではありません。講師側で用意済みの配布ファイルを使います。配布元は [`/downloads/reflect-skill/SKILL.md`](/downloads/reflect-skill/SKILL.md) です。
+</Callout>
+
+1. [`/downloads/reflect-skill/SKILL.md`](/downloads/reflect-skill/SKILL.md) を開く
+2. 中身をコピーする、または Codex にこのURLを渡す
+3. Codex に次を貼る
+
+```text
+研修サイトの /downloads/reflect-skill/SKILL.md を取得して、
+私の環境で reflect というSkillとして使えるようにしてください。
+
+目的:
+- セッション終わりに learning-log/YYYY-MM-DD.md へ振り返りを追記する
+- AGENTS.md には生ログを書かず、再利用できるルールだけ昇格候補にする
+
+設定後、/reflect が使えるか確認してください。
+```
+
+## 使い方
+
+<StepFlow>
+  <Step no="1" title="セッションを1つ終える">演習、制作、詰まりの解決のいずれか。</Step>
+  <Step no="2" title="/reflect を実行">下のプロンプトをCodexに貼る。</Step>
+  <Step no="3" title="learning-log を確認">追記が増えていることを見る。</Step>
+  <Step no="4" title="必要なら昇格案だけ受け取る">同じミスが2回なら AGENTS.md 追記案を1行もらう。</Step>
+</StepFlow>
+
+```text
+/reflect を実行してください。
+いま終えたセッションの振り返りを learning-log/YYYY-MM-DD.md に追記してください。
+項目は「できたこと」「詰まったこと」「どう直したか」「使えた型」「明日試すInput/Process」。
+同じミスを2回繰り返している場合だけ、AGENTS.mdへの追記案を1行提案してください。AGENTS.md本文はまだ書き換えないでください。
+```
+
+<Callout variant="tip" title="100選への接続">
+  Day2 の [振り返りskill・仕込み](/day-2/showcase/) と [発表・ふりかえり](/day-2/reflection/) で、このログが一覧HTMLの材料になる。
+</Callout>
+
+次は [writing-great-skills](/day-1/skills/writing-great-skills/) へ進む。

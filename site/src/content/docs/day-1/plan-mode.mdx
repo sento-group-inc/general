@@ -1,0 +1,55 @@
+---
+title: Planモードを使う
+description: 作り始める前に、目的・材料・手順・確認方法を先に出させる
+---
+
+import ProgressMap from '../../../components/ProgressMap.astro';
+import SectionHead from '../../../components/training/SectionHead.astro';
+import StepFlow from '../../../components/training/StepFlow.astro';
+import Step from '../../../components/training/Step.astro';
+import Callout from '../../../components/training/Callout.astro';
+
+<ProgressMap current="day1-pm" />
+
+<SectionHead no="8" title="Planモードを使う" subtitle="大きめの作業は、先に計画を出してから動かす" />
+
+`/plan` は、Codexにいきなり作業させず、先に進め方を出させるための入口です。目的、Input、作るもの、確認方法が見えるので、暴走や的外れを早めに止められます。
+
+## 使う場面
+
+<StepFlow>
+  <Step no="1" title="作業が大きい">複数ファイル、複数ページ、長い資料作成の前に使う。</Step>
+  <Step no="2" title="正解がまだ曖昧">何を作るべきか、確認観点から一緒に整理したい時に使う。</Step>
+  <Step no="3" title="失敗コストがある">削除、上書き、外部送信、公開に近い作業の前に使う。</Step>
+</StepFlow>
+
+## 実践
+
+次のプロンプトをCodexに貼ります。
+
+```text
+/plan
+このあと「部署の週次報告を要約するテンプレート」を作りたいです。
+
+まず実装せず、次の観点で計画してください。
+- 目的
+- 必要なInput
+- 作るもの
+- 進め方
+- 確認方法
+- 先に人間へ確認すべきこと
+```
+
+出てきた計画を見て、違うところを1つだけ直します。
+
+```text
+方針はOKです。
+ただし、対象は部署全体ではなく営業チームの週次報告にしてください。
+この前提で、最初の小さい成果物だけ作ってください。
+```
+
+<Callout variant="check" title="見るポイント">
+  `/plan` の価値は、計画を完璧にすることではなく、作業前にズレを見つけること。計画が長すぎる時は「最初の一歩だけに絞って」と返す。
+</Callout>
+
+次は [Goalモードを使う](/day-1/goal-mode/) へ進みます。

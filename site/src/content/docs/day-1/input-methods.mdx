@@ -1,0 +1,97 @@
+---
+title: ファイルや画像・音声の挿入
+description: 音声、写真、手書きホワイトボード、ファイル追加でCodexにInputを渡す
+---
+
+import ProgressMap from '../../../components/ProgressMap.astro';
+import SectionHead from '../../../components/training/SectionHead.astro';
+import ImageText from '../../../components/training/ImageText.astro';
+import StepFlow from '../../../components/training/StepFlow.astro';
+import Step from '../../../components/training/Step.astro';
+import Callout from '../../../components/training/Callout.astro';
+
+import voiceShot from '../../../assets/training/codex-voice-notification.png';
+import pluginsShot from '../../../assets/training/codex-plugins.png';
+
+<ProgressMap current="day1-pm" />
+
+<SectionHead no="9" title="ファイルや画像・音声の挿入" subtitle="音声、写真、手書きメモ、業務資料をCodexへ渡し、改善材料を作る" />
+
+## 1. 音声でやってみよう
+
+<ImageText
+  imageSrc={voiceShot.src}
+  imageAlt="音声入力設定"
+  title="音声入力＋単語登録"
+  caption="喋りは書くより速い。最初のInputを作りやすい"
+>
+  <p>ホットキーを設定し、会社名・部署名・固有名詞を辞書登録してから演習に入る。</p>
+</ImageText>
+
+<StepFlow>
+  <Step no="1" title="ホットキーを設定">Codexの音声入力設定でキーを割り当てる。</Step>
+  <Step no="2" title="単語登録">会社名・部署名・固有名詞をユーザ辞書に登録する。</Step>
+  <Step no="3" title="演習：2分しゃべる">自分の業務を**2分**、音声で喋る。完璧な文章にしない。</Step>
+  <Step no="4" title="Codexに貼る">文字起こし結果をCodexチャットに貼り、「この内容を整理して」と指示する。</Step>
+</StepFlow>
+
+```text
+以下は私が音声で2分喋った業務メモです。要点を3行に整理し、
+Mermaid化するための材料リストを作ってください。
+
+[ここに音声文字起こしを貼る]
+```
+
+## 2. ファイル追加で業務資料を渡す
+
+議事録、メール、Excel手順、既存マニュアルを1つ選びます。内容を全部説明しようとせず、まずはファイルや本文をCodexに渡します。
+
+<StepFlow>
+  <Step no="1" title="資料を1つ選ぶ">議事録・メール・Excel手順・既存マニュアルのいずれか。</Step>
+  <Step no="2" title="Codexに指す">ファイルを開く、追加する、内容を貼る。まずは**指すだけ**でInputになる。</Step>
+  <Step no="3" title="業務の流れを抽出">資料から「誰が・いつ・何をするか」を5行以内で抜き出させる。</Step>
+</StepFlow>
+
+```text
+添付の業務資料を読んで、業務フローの主要ステップを
+箇条書き5行以内で抜き出してください。推測は最小限に。
+```
+
+## 3. 写真や手書きホワイトボードを渡す
+
+紙のメモやホワイトボードは、整える前に写真で渡します。読めない箇所はAIに無理に補完させず、不明として残します。
+
+<StepFlow>
+  <Step no="1" title="手書きメモを書く">業務の流れを紙かホワイトボードに雑に書く。</Step>
+  <Step no="2" title="写真を撮る">スマホで撮影し、Codexに画像として渡す。</Step>
+  <Step no="3" title="構造化">AIに読み取らせ、テキスト化して⑫のMermaid材料にする。</Step>
+</StepFlow>
+
+```text
+この手書きメモの写真を読み取り、業務フローの箇条書きに変換してください。
+読み取れない部分は [不明] と書いて、推測は最小限に。
+```
+
+## 4. プラグイン経由で資料を指す
+
+<ImageText
+  imageSrc={pluginsShot.src}
+  imageAlt="Codexプラグイン一覧"
+  title="プラグイン経由のファイル参照"
+  caption="Box / SharePoint / Excel / Outlook / Teams の資料をInputにする"
+>
+  <p>
+    接続済みの資料は、ファイル名やフォルダ名を指定してCodexに確認させます。最初は読み取りと一覧化だけにします。
+  </p>
+</ImageText>
+
+```text
+SharePointの私の研修フォルダ「AI研修_氏名」にある資料を確認してください。
+まずファイル名だけを一覧にしてください。中身の編集はまだしないでください。
+```
+
+<Callout variant="tip" title="⑫への接続">
+  ここで作った音声メモ、業務資料の抜き出し、手書き写真の読み取り結果が、UML業務フローモデリングとMermaid改善ループの追加Inputになる。
+</Callout>
+
+次は [crawl4aiでWebページをInputにする](/day-1/crawl4ai/) へ進む。

@@ -1,33 +1,241 @@
 ---
 title: AI研修
-description: Codexを仕事と日常で使いこなすための2日間実践研修
+description: 2日間でCodexを学び、自分の業務で使い始めるための研修ポータル
 template: splash
-hero:
-  tagline: 自分の興味から触り、仕事で使える形まで2日間で作ります。
-  actions:
-    - text: 研修をはじめる
-      link: /start/
-      icon: right-arrow
-    - text: Day 1を見る
-      link: /day-1/free-explore/
-      variant: minimal
 ---
 
-import { Card, CardGrid, Steps } from '@astrojs/starlight/components';
+<div class="top-board-shell">
+  <aside class="top-command-panel" aria-label="この研修のゴール">
+    <p class="top-panel-kicker">この2日間のゴール</p>
+    <a class="top-command-primary" href="/start/">
+      <span class="top-command-icon">▶</span>
+      <span>
+        <strong>明日から、AIを業務で使い倒す</strong>
+        <small>「触ったことがある」で終わらせず、自分の仕事で使える状態にする</small>
+      </span>
+    </a>
+    <a class="top-command-secondary" href="/day-1/intro/">
+      <span class="top-command-icon">→</span>
+      <span>
+        <strong>はじめる</strong>
+        <small>Day1・オープニングへ</small>
+      </span>
+    </a>
 
-## 2日間で持ち帰るもの
+    <section class="top-purpose-panel" aria-label="そのために必要な2つ">
+      <p class="top-panel-kicker">そのために必要な2つ</p>
+      <p><strong>① スキルの取得</strong> — Codexを自分の手で操れるようにする。</p>
+      <p><strong>② AIへの理解</strong> — 何ができて、何が怖くて、どう付き合うかを掴む。</p>
+      <p>この2つを、Day1で広げ、Day2で自分の業務に落とす。</p>
+    </section>
+  </aside>
 
-<CardGrid>
-	<Card title="まず、自由に触る" icon="open-book">仕事に限定せず、自分の興味からAIの可動域を体感します。</Card>
-	<Card title="目に見えるものを作る" icon="document">性格診断HTMLやToDoアプリを作り、指示が成果物になる感覚を掴みます。</Card>
-	<Card title="実務へつなげる" icon="setting">業務を棚卸しし、部署で再利用できる成果物や型にします。</Card>
-</CardGrid>
+  <section class="top-schedule-board" aria-label="2日間スケジュール">
+    <div class="top-board-column">
+      <header>
+        <strong>DAY 1 AM</strong>
+        <span>触って広げる①</span>
+      </header>
+      <a class="top-session-card" href="/day-1/intro/">
+        <span class="top-session-no">1</span>
+        <span class="top-session-main">
+          <strong>オープニング</strong>
+          <small>ゴール・必要な2つ・2日間の地図を共有する。</small>
+          <em><b>導入</b></em>
+        </span>
+        <time>20分</time>
+      </a>
+      <a class="top-session-card" href="/day-1/why-ai/">
+        <span class="top-session-no">2</span>
+        <span class="top-session-main">
+          <strong>なぜAIを使うか</strong>
+          <small>拡張感覚と、チャットとの違い（手も動くAI）。</small>
+          <em><b>問い</b></em>
+        </span>
+        <time>10分</time>
+      </a>
+      <a class="top-session-card" href="/day-1/ipoa/">
+        <span class="top-session-no">3</span>
+        <span class="top-session-main">
+          <strong>IPOA：進め方の地図</strong>
+          <small>Input足す→Process良くする→Output自然→Action。</small>
+          <em><b>地図</b></em>
+        </span>
+        <time>15分</time>
+      </a>
+      <a class="top-session-card" href="/day-1/ground-rules/">
+        <span class="top-session-no">4</span>
+        <span class="top-session-main">
+          <strong>グランドルール・詰まったら</strong>
+          <small>詰まる原因は2つ。記録は明日の発表材料になる。</small>
+          <em><b>ルール</b></em>
+        </span>
+        <time>20分</time>
+      </a>
+      <a class="top-session-card" href="/start/prework/">
+        <span class="top-session-no">5</span>
+        <span class="top-session-main">
+          <strong>事前準備・セットアップ</strong>
+          <small>導入・サインイン・作業フォルダ・基本設定を通す。</small>
+          <em><b>準備</b></em>
+        </span>
+        <time>60分</time>
+      </a>
+      <a class="top-session-card" href="/day-1/security/">
+        <span class="top-session-no">6</span>
+        <span class="top-session-main">
+          <strong>セキュリティ設定</strong>
+          <small>学習OFF・権限・ダミー違反の警告を確認する。</small>
+          <em><b>設定</b></em>
+        </span>
+        <time>30分</time>
+      </a>
+      <a class="top-session-card" href="/day-1/free-explore/">
+        <span class="top-session-no">7</span>
+        <span class="top-session-main">
+          <strong>自由探索</strong>
+          <small>仕事の前に、自分の関心でCodexに触る。</small>
+          <em><b>試す</b></em>
+        </span>
+        <time>30分</time>
+      </a>
+    </div>
 
-## 進み方
+    <div class="top-board-column">
+      <header>
+        <strong>DAY 1 PM</strong>
+        <span>Input × Process を回す</span>
+      </header>
+      <a class="top-session-card" href="/day-1/codex-mastery/">
+        <span class="top-session-no">8</span>
+        <span class="top-session-main">
+          <strong>Codexを操る</strong>
+          <small>基本操作、AGENTS.md、Plan/Goalモードを本流で触る。</small>
+          <em><b>操作</b></em>
+        </span>
+        <time>50分</time>
+      </a>
+      <a class="top-session-card" href="/day-1/plugins/">
+        <span class="top-session-no">9</span>
+        <span class="top-session-main">
+          <strong>Input：プラグイン・音声・写真・資料</strong>
+          <small>プラグイン、音声、写真、資料、WebをInputとして渡す。</small>
+          <em><b>Input</b></em>
+        </span>
+        <time>40分</time>
+      </a>
+      <a class="top-session-card" href="/day-1/skills/">
+        <span class="top-session-no">10</span>
+        <span class="top-session-main">
+          <strong>Skill：段取りを部品化</strong>
+          <small>grill-me/teach/振り返り。skill-improverで改善する。</small>
+          <em><b>Process</b></em>
+        </span>
+        <time>40分</time>
+      </a>
+      <a class="top-session-card" href="/day-1/modeling/">
+        <span class="top-session-no">11</span>
+        <span class="top-session-main">
+          <strong>門限の話＝モデリング</strong>
+          <small>可視化が改善の土台。Mermaidで関係者と流れを描く。</small>
+          <em><b>可視化</b></em>
+        </span>
+        <time>30分</time>
+      </a>
+      <a class="top-session-card" href="/day-1/mermaid-flow/">
+        <span class="top-session-no">12</span>
+        <span class="top-session-main">
+          <strong>Mermaid業務フロー改善ループ</strong>
+          <small>v1→Input追加→v2。自分の業務でIPOAを回す。</small>
+          <em><b>本日の山</b></em>
+        </span>
+        <time>70分</time>
+      </a>
+      <a class="top-session-card" href="/day-1/reflect/">
+        <span class="top-session-no">13</span>
+        <span class="top-session-main">
+          <strong>Day1ふりかえり</strong>
+          <small>learning-logを開き、明日当てたい業務を1つ決める。</small>
+          <em><b>記録</b></em>
+        </span>
+        <time>30分</time>
+      </a>
+    </div>
 
-<Steps>
-1. **START** — Codexを開き、最初のファイルを作る
-2. **DAY 1** — 自由探索、性格診断、指示設計、改善
-3. **DAY 2** — 業務棚卸し、本制作、発表
-4. **AFTER** — 学びを記録し、次の活用へつなげる
-</Steps>
+    <div class="top-board-column">
+      <header>
+        <strong>DAY 2</strong>
+        <span>自分の業務に落とす</span>
+      </header>
+      <a class="top-session-card" href="/day-2/work-inventory/">
+        <span class="top-session-no">14</span>
+        <span class="top-session-main">
+          <strong>業務棚卸し（TOC）</strong>
+          <small>『ザ・ゴール』のTOCで制約を探し、今日作るv1へ落とす。</small>
+          <em><b>分析</b></em>
+        </span>
+        <time>90分</time>
+      </a>
+      <a class="top-session-card" href="/day-2/assign/">
+        <span class="top-session-no">15</span>
+        <span class="top-session-main">
+          <strong>作業分担・着手</strong>
+          <small>誰が何を潰すか。できた人から本制作へ。</small>
+          <em><b>計画</b></em>
+        </span>
+        <time>15分</time>
+      </a>
+      <a class="top-session-card" href="/day-2/production/">
+        <span class="top-session-no">16</span>
+        <span class="top-session-main">
+          <strong>本制作 v1→v2</strong>
+          <small>Input足す・Process直すで、変化が見える状態にする。</small>
+          <em><b>制作</b></em>
+        </span>
+        <time>150分</time>
+      </a>
+      <a class="top-session-card" href="/day-2/showcase/">
+        <span class="top-session-no">17</span>
+        <span class="top-session-main">
+          <strong>振り返りskill・仕込み</strong>
+          <small>成果物を1か所に集約し、リンク集の材料を整える。</small>
+          <em><b>仕込み</b></em>
+        </span>
+        <time>20分</time>
+      </a>
+      <a class="top-session-card" href="/day-2/reflection/">
+        <span class="top-session-no">18</span>
+        <span class="top-session-main">
+          <strong>全員発表・クローズ</strong>
+          <small>変化を共有し、明日試すInputを1つ決める。</small>
+          <em><b>発表</b></em>
+        </span>
+        <time>50分</time>
+      </a>
+    </div>
+  </section>
+
+  <section class="top-check-panel" aria-label="今日のやること">
+    <h2>今日のやること</h2>
+    <label><input type="checkbox" />事前準備・セットアップを完了する</label>
+    <label><input type="checkbox" />自由探索で試したことを1つ残す</label>
+    <label><input type="checkbox" />Mermaidで自分の業務フローをv1→v2まで回す</label>
+    <a href="/start/schedule/">すべて見る</a>
+  </section>
+
+  <section class="top-note-panel" aria-label="進め方">
+    <h2>進め方</h2>
+    <ul>
+      <li>Day1は「触って広げる」。一度で覚えなくていい。あとでサイドバーとlearning-logから引ける。</li>
+      <li>詰まったら、権限・入力の具体性・参照資料の不足を確認する。</li>
+      <li>Day2は「自分の業務に落とす」。完成品より、Inputを足してどう変わったかを見る。</li>
+    </ul>
+  </section>
+
+  <section class="top-resource-panel" aria-label="研修リソース">
+    <h2>研修リソース</h2>
+    <a href="/day-1/ipoa/">IPOA：進め方の地図 <span>›</span></a>
+    <a href="/reference/slash-commands/">スラッシュコマンド早見表 <span>›</span></a>
+    <a href="/reference/custom-instructions/">カスタム指示（研修版） <span>›</span></a>
+  </section>
+</div>

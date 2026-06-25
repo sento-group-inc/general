@@ -1,14 +1,41 @@
 ---
 title: はじめに
-description: 研修を始める前の準備
+description: 2日間の進め方と開始導線
 ---
 
-この研修では、説明を聞くだけでなく、Codexに実際に手を動かしてもらいます。
+import ProgressMap from '../../../components/ProgressMap.astro';
+import SectionHead from '../../../components/training/SectionHead.astro';
+import StepFlow from '../../../components/training/StepFlow.astro';
+import Step from '../../../components/training/Step.astro';
+import Callout from '../../../components/training/Callout.astro';
 
-## 最初に確認すること
+<ProgressMap current="start" />
 
-1. Codexデスクトップアプリへサインインできる
-2. 研修用の作業フォルダを開ける
-3. `hello.md`を作成できる
+<SectionHead no="0" title="2日間でCodexを学び、自分の業務で使い始める" subtitle="Day1は触って広げ、Day2で自分の業務に落とす" />
 
-準備ができたら、[30分の自由探索](/day-1/free-explore/)へ進みます。
+<div class="purpose-lead">
+  <p>2日間で、Codexの基本操作、Inputの出し方、改善の回し方を通し、自分の業務で使い始める状態を作ります。Day1は、説明よりもCodexを触る時間に寄せます。</p>
+</div>
+
+<Callout variant="check" title="この研修のゴール">
+  説明を聞いて終わるのではなく、手を動かしながら「粗く出す → Inputを足す → 改善する」を自分の業務で回せるようにする。
+</Callout>
+
+## 最初にやること
+
+<StepFlow>
+  <Step no="1" title="Startで前提をそろえる">自己紹介、なぜAIを使うか、2日間の流れを先に確認する。</Step>
+  <Step no="2" title="Codex演習へ進む">グランドルール、セットアップ、セキュリティ、AGENTS.md、Input追加までCodex上で触る。</Step>
+  <Step no="3" title="Day2の制作へつなぐ">Day1で得たInputとlearning-logを、Day2の業務制作に使う。</Step>
+</StepFlow>
+
+## 次に見るページ
+
+1. [自己紹介](/day-1/intro/) — 2日間でできるようになりたいことを出す
+2. [なぜAIを使うか](/day-1/why-ai/) — 使う前提をそろえる
+3. [IPOA解説](/day-1/ipoa/) — 2日間の進め方の地図
+4. [2日間スケジュール](/start/schedule/) — セッション1〜18を俯瞰
+5. [グランドルール・詰まったら](/day-1/ground-rules/) — 止まった時の動きをそろえる
+6. [事前準備・セットアップ](/start/prework/) — Codexを触るための準備
+
+準備ができたら [自己紹介](/day-1/intro/) へ進みます。

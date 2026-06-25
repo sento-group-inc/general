@@ -1,0 +1,198 @@
+---
+title: 事前準備・セットアップ
+description: Codex・SharePoint・設定確認を1ページで済ませる
+---
+
+import ProgressMap from '../../../components/ProgressMap.astro';
+import SectionHead from '../../../components/training/SectionHead.astro';
+import StepFlow from '../../../components/training/StepFlow.astro';
+import Step from '../../../components/training/Step.astro';
+import ImageText from '../../../components/training/ImageText.astro';
+import Callout from '../../../components/training/Callout.astro';
+
+import menuShot from '../../../assets/training/codex-left-menu-current.png';
+import projectFolderShot from '../../../assets/training/codex-project-folder-picker.png';
+import generalSettingsShot from '../../../assets/training/codex-general-settings.png';
+import workmodeShot from '../../../assets/training/codex-workmode-permissions.png';
+import voiceShot from '../../../assets/training/codex-voice-notification.png';
+import memoryShot from '../../../assets/training/codex-memory.png';
+
+<ProgressMap current="day1-am" />
+
+<SectionHead no="5" title="事前準備・セットアップ" subtitle="当日使うフォルダ、記録、Codex設定をここで揃える" />
+
+受講者PCはWindows前提で進めます。**Codexデスクトップアプリ**を使い、Cursor等のIDEは不要です。WSLも必須ではありません。
+
+## 0. Codexアプリの導入（事前または当日）
+
+Microsoft Store または winget から Codex をインストールします。
+
+```powershell
+winget install Codex -s msstore
+```
+
+インストール後、ゼネラルの有料ChatGPTアカウントでサインインします。  
+Node.js や Python は Codex 本体の必須条件ではありません。必要な演習（crawl4ai 等）のときだけ個別に入れます。
+
+<Callout variant="warn" title="最大の詰まりポイント">
+  社内プロキシやTLS設定でサインインが失敗することがあります。事前にインストールとサインインまで済ませておくと当日が楽です。
+</Callout>
+
+<StepFlow>
+  <Step no="1" title="Codex App にログイン">ゼネラルの有料ChatGPTアカウントでCodexにログインする。</Step>
+  <Step no="2" title="研修フォルダの作成場所を確認">SharePoint上に `AI研修_氏名` を作ることだけ確認する。実作業はAGENTS.mdパートでまとめて行う。</Step>
+  <Step no="3" title="Codex設定を確認">左メニュー、一般設定、作業モード、権限、音声、通知、パーソナライズを確認する。</Step>
+  <Step no="4" title="動作確認">後続のAGENTS.mdパートで `learning-log/`、`outputs/`、`hello.md` を作れるように準備する。</Step>
+</StepFlow>
+
+<Callout variant="check" title="最短ゴール">
+  当日朝に詰まらず、すぐ手を動かせる状態にする。開発者向けの準備ではなく、業務資料を扱うための箱と、Codexを安全に使う初期状態を作る。
+</Callout>
+
+## 1. 研修フォルダと記録ルールはAGENTS.mdパートで作る
+
+SharePoint上の研修フォルダ名は、次の形にそろえる。
+
+```text
+AI研修_氏名
+```
+
+ただし、このページでは詳細な作成手順まで進めません。`learning-log/`、`outputs/`、`AGENTS.md`、`hello.md` の作成は、[AGENTS.mdでログを貯めて失敗も成功も資産にしよう](/day-1/agents-logging/) でまとめて実践します。
+
+ここでやることは、Codexにログインして、SharePointの場所を開けるか確認するところまでです。
+
+## 2. 作業フォルダを固定する
+
+Codexの入力欄下にあるプロジェクト選択から、今回使う作業フォルダを固定します。ここが毎回ぶれると、`AGENTS.md`、`learning-log/`、`outputs/` が別の場所に作られてしまいます。
+
+<ImageText
+  imageSrc={projectFolderShot.src}
+  imageAlt="Codexのプロジェクト選択メニュー"
+  title="既存のフォルダーを使用"
+  caption="プロジェクト選択から研修フォルダを固定する"
+>
+  <ul>
+    <li>入力欄下のプロジェクト名（例：general）をクリックする</li>
+    <li>一覧に `AI研修_氏名` があれば選択する</li>
+    <li>なければ **既存のフォルダーを使用** から研修フォルダを選ぶ</li>
+    <li>この後の演習は、必ずこのフォルダを選んだ状態で始める</li>
+  </ul>
+</ImageText>
+
+<Callout variant="check" title="ここで固定する理由">
+  Codexは選んだプロジェクトフォルダを作業場所として扱います。研修では `AI研修_氏名` を固定し、成果物は `outputs/`、記録は `learning-log/` に集めます。
+</Callout>
+
+## 3. Codexの左メニューを確認
+
+<ImageText
+  imageSrc={menuShot.src}
+  imageAlt="Codex左メニュー"
+  title="左メニュー"
+  caption="新しいチャット、検索、プラグイン、設定の入口を確認"
+>
+  <ul>
+    <li>新しいチャット：新しい相談や作業を始める入口</li>
+    <li>検索：過去のスレッドや作業を探す入口</li>
+    <li>プラグイン：Box / SharePointなど外部サービス接続の入口</li>
+    <li>設定：Codexの動作、通知、パーソナライズを変える入口</li>
+  </ul>
+</ImageText>
+
+## 4. 一般設定を確認
+
+OpenAI公式では、Codex AppのSettingsでファイルの開き方、コマンド出力の表示量、ターミナルタブ、複数行送信、実行中のスリープ防止などを調整できる。
+
+<ImageText
+  imageSrc={generalSettingsShot.src}
+  imageAlt="Codex一般設定"
+  title="一般設定"
+  caption="送信キー、出力量、スリープ防止を確認"
+>
+  <ul>
+    <li>ファイルを開く場所：Codexが作ったファイルをどのアプリで開くか</li>
+    <li>コマンド出力：ターミナル結果をどのくらい会話に表示するか</li>
+    <li>ターミナルタブ：コマンド実行時の表示先</li>
+    <li>複数行入力：長文を誤送信しないための設定</li>
+    <li>実行中のスリープ防止：長めの作業中にPCが止まらないようにする設定</li>
+  </ul>
+</ImageText>
+
+## 5. 作業モードと権限を確認
+
+<ImageText
+  imageSrc={workmodeShot.src}
+  imageAlt="作業モードと権限"
+  title="作業モードと権限"
+  caption="作業モードはコーディング向け。権限は必要な時だけ広げる"
+>
+  <ul>
+    <li>作業モード：Codexがどの前提で作業するかを決める設定</li>
+    <li>読み取り中心：まず調べるだけの時に使う</li>
+    <li>ワークスペース権限：研修フォルダ内でファイルを作る時に使う</li>
+    <li>フルアクセス：講師指示がある時だけ使う</li>
+  </ul>
+</ImageText>
+
+権限は、ローカルで実行するコマンドやファイル操作の範囲を決めるものです。外部サービス、ブラウザ操作、コンピュータ操作、プラグインはそれぞれ別の接続・承認で管理されます。
+
+## 6. 音声入力と通知を確認
+
+<ImageText
+  imageSrc={voiceShot.src}
+  imageAlt="音声入力設定"
+  title="音声入力と通知"
+  caption="ホットキー、辞書、完了通知を確認"
+>
+  <ul>
+    <li>音声入力：話した内容をInputとして渡すための機能</li>
+    <li>ホットキー：音声入力をすぐ起動するためのキー</li>
+    <li>辞書登録：会社名、部署名、固有名詞の誤変換を減らす設定</li>
+    <li>完了通知：Codexの作業完了に気づくための通知</li>
+  </ul>
+</ImageText>
+
+音声は、長い業務説明をテキストで書く負担を下げるために使います。まずは自分の業務を2分話して、Codexに整理させる入口として使います。
+
+## 7. パーソナライズ、カスタム指示、メモリを確認
+
+<ImageText
+  imageSrc={memoryShot.src}
+  imageAlt="パーソナライズとメモリ設定"
+  title="パーソナライズとメモリ"
+  caption="カスタム指示、メモリ、個人設定の画面"
+>
+  <ul>
+    <li>カスタム指示：Codex全体の振る舞いを決める指示</li>
+    <li>メモリ：過去の有用な文脈を次回以降に使う機能</li>
+    <li>パーソナライズ：表示名や個人設定を管理する場所</li>
+  </ul>
+</ImageText>
+
+### カスタム指示とは？
+
+Codex全体に効く、基本の振る舞い定義です。口調、回答の長さ、確認の仕方、禁止事項を先に書いておくと、毎回同じ注意をしなくてよくなります。貼り付け文は [おすすめカスタム指示](/reference/custom-instructions/) を使います。
+
+### メモリを有効にするとは？
+
+過去スレッドから有用な文脈をローカルのメモリとして保存し、次回以降の作業で使えるようにする設定です。便利ですが、研修中は `learning-log/` を正本にします。メモリに頼らず、人間も読める形で記録を残すためです。
+
+## 8. 動作確認
+
+CodexでSharePointの研修フォルダを開けるところまで確認する。ファイル作成の本番確認は、次のAGENTS.mdパートで行う。
+
+```text
+このあとAGENTS.mdパートで、AI研修_氏名 フォルダに learning-log/、outputs/、AGENTS.md、hello.md を作ります。
+いまはこのフォルダを作業場所として扱えるか確認してください。
+```
+
+<StepFlow>
+  <Step no="✓" title="Codexにログインできる">新しいチャットを開始できる。</Step>
+  <Step no="✓" title="SharePointの場所がわかる">`AI研修_氏名` フォルダを作る場所を開ける。</Step>
+  <Step no="✓" title="作業フォルダを固定した">Codexのプロジェクト選択で `AI研修_氏名` を選んだ状態にした。</Step>
+  <Step no="✓" title="記録パートへ進める">`learning-log/` と `AGENTS.md` は次のAGENTS.mdパートで作るとわかっている。</Step>
+  <Step no="✓" title="設定を確認した">一般設定、作業モード、権限、音声、通知、カスタム指示、メモリを見た。</Step>
+  <Step no="✓" title="次の実践に進める">Codexが研修フォルダを扱える状態になっている。</Step>
+</StepFlow>
+
+準備が完了したら [セキュリティ設定](/day-1/security/) へ進み、自由探索の後に [Codexを操る](/day-1/codex-mastery/) の中で AGENTS.md と記録の仕組みを作る。

@@ -1,0 +1,21 @@
+{
+  "folders": [
+    {
+      "name": "general（メイン）",
+      "path": "."
+    },
+    {
+      "name": "wajima（個人脳）",
+      "path": "../wajima"
+    },
+    {
+      "name": "sento-team（チーム脳）",
+      "path": "../sento-team"
+    },
+    {
+      "name": "Aigassyuku06（参照）",
+      "path": "../Aigassyuku06"
+    }
+  ],
+  "settings": {}
+}

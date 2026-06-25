@@ -1,0 +1,60 @@
+---
+title: Day1ふりかえり（13）
+description: 振り返りskillでログを残し、Day2へつなぐ
+---
+
+import ProgressMap from '../../../components/ProgressMap.astro';
+import StepFlow from '../../../components/training/StepFlow.astro';
+import Step from '../../../components/training/Step.astro';
+import Callout from '../../../components/training/Callout.astro';
+
+<ProgressMap current="day1-pm" />
+
+## 1人で実施：learning-logを読む
+
+朝から区切りごとに残してきた `learning-log/` を開き、Day2に使う材料を抜き出します。
+
+<StepFlow>
+  <Step no="1" title="learning-log を開く">研修フォルダの `learning-log/` を確認する。</Step>
+  <Step no="2" title="今日の記録を読む">できたこと、詰まったこと、直し方を見返す。</Step>
+  <Step no="3" title="振り返りskillで整理">[振り返りskill（reflect）](/day-1/skills/reflect/) のプロンプトをCodexに貼る。</Step>
+  <Step no="4" title="共有用に1つ選ぶ">グループ共有で話す「詰まりと越え方」を1つ決める。</Step>
+</StepFlow>
+
+```text
+/reflect を実行してください。
+learning-log/ にある今日の記録を読んで、Day1の振り返りメモを追記してください。
+項目は「できたこと」「詰まったこと」「どう直したか」「明日試したいこと」。
+詰まりは失敗ではなく、次の教材として書いてください。
+```
+
+## learning-log 例
+
+```text
+# Day1 learning-log
+
+## できたこと
+- Codexで hello.md を作れた
+- 音声入力で業務メモを整理できた
+
+## 詰まったこと
+- 権限確認で止まった
+
+## どう直したか
+- 講師に確認し、デフォルト権限のまま進めた
+
+## 明日試したいこと
+- 月次報告の下書きに、過去資料をInputとして足す
+```
+
+## グループ共有（3人）
+
+- 各自 5〜7分
+- 「詰まりをどう越えたか」を中心に共有
+- 他メンバーは1つ質問する
+
+<Callout variant="tip" title="Day2へのつなぎ">
+  今日のログは、明日の業務棚卸しで「何にAIを向けるか」を決める材料になる。
+</Callout>
+
+次は [Day2の業務棚卸し（14）](/day-2/work-inventory/) へ進みます。

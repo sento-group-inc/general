@@ -1,0 +1,351 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>デジタル推進グループ AI活用方針概要</title>
+  <style>
+    :root {
+      --ink: #17202a;
+      --muted: #647181;
+      --line: #d8e0e8;
+      --paper: #f7f9fb;
+      --white: #ffffff;
+      --deep: #173b57;
+      --main: #2d6f8f;
+      --accent: #d9893d;
+      --soft: #e9f3f7;
+      --soft2: #fff2e5;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      color: var(--ink);
+      font-family: "Hiragino Sans", "Yu Gothic", "Meiryo", system-ui, sans-serif;
+      background: var(--paper);
+      line-height: 1.55;
+    }
+
+    main {
+      width: min(1440px, 100vw);
+      min-height: 100vh;
+      margin: 0 auto;
+      padding: 22px 42px 20px;
+      display: grid;
+      grid-template-rows: auto auto 1fr auto;
+      gap: 14px;
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: 1.25fr .75fr;
+      gap: 24px;
+      align-items: end;
+      border-bottom: 4px solid var(--deep);
+      padding-bottom: 16px;
+    }
+
+    .eyebrow {
+      margin: 0 0 10px;
+      color: var(--main);
+      font-size: 15px;
+      font-weight: 800;
+      letter-spacing: .08em;
+    }
+
+    h1 {
+      margin: 0;
+      color: var(--deep);
+      font-size: clamp(31px, 3.3vw, 46px);
+      line-height: 1.08;
+      letter-spacing: 0;
+    }
+
+    .lead {
+      margin: 10px 0 0;
+      max-width: 840px;
+      color: #314252;
+      font-size: 18px;
+      font-weight: 700;
+    }
+
+    .north {
+      background: var(--deep);
+      color: var(--white);
+      padding: 16px 20px;
+      border-radius: 8px;
+    }
+
+    .north b {
+      display: block;
+      margin-bottom: 8px;
+      color: #f7c07c;
+      font-size: 18px;
+    }
+
+    .north p {
+      margin: 0;
+      font-size: 17px;
+      font-weight: 700;
+    }
+
+    .signal-row {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+    }
+
+    .signal {
+      min-height: 104px;
+      padding: 14px 18px;
+      background: var(--white);
+      border: 1px solid var(--line);
+      border-top: 5px solid var(--main);
+      border-radius: 8px;
+    }
+
+    .signal strong {
+      display: block;
+      margin-bottom: 8px;
+      color: var(--deep);
+      font-size: 18px;
+    }
+
+    .signal span {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .body-grid {
+      display: grid;
+      grid-template-columns: .9fr 1.12fr .98fr;
+      gap: 20px;
+      align-items: stretch;
+    }
+
+    section {
+      background: var(--white);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 18px 20px;
+    }
+
+    h2 {
+      margin: 0 0 12px;
+      color: var(--deep);
+      font-size: 24px;
+      line-height: 1.25;
+    }
+
+    .policy {
+      display: grid;
+      gap: 12px;
+    }
+
+    .policy-item {
+      display: grid;
+      grid-template-columns: 42px 1fr;
+      gap: 12px;
+      align-items: start;
+      padding: 10px 0;
+      border-top: 1px solid var(--line);
+    }
+
+    .policy-item:first-child { border-top: 0; padding-top: 0; }
+
+    .num {
+      display: grid;
+      place-items: center;
+      width: 38px;
+      height: 38px;
+      border-radius: 999px;
+      background: var(--soft);
+      color: var(--main);
+      font-weight: 900;
+    }
+
+    .policy-item b {
+      display: block;
+      margin-bottom: 4px;
+      font-size: 17px;
+    }
+
+    .policy-item p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .build-list {
+      display: grid;
+      gap: 12px;
+    }
+
+    .build {
+      padding: 11px 16px;
+      background: linear-gradient(90deg, var(--soft), #ffffff);
+      border-left: 5px solid var(--main);
+      border-radius: 6px;
+    }
+
+    .build b {
+      display: block;
+      margin-bottom: 4px;
+      font-size: 17px;
+    }
+
+    .build p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .map {
+      display: grid;
+      gap: 10px;
+    }
+
+    .step {
+      position: relative;
+      padding: 10px 14px 10px 46px;
+      background: #fbfcfd;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      min-height: 62px;
+    }
+
+    .step::before {
+      content: attr(data-step);
+      position: absolute;
+      top: 10px;
+      left: 13px;
+      color: var(--accent);
+      font-weight: 900;
+    }
+
+    .step b {
+      display: block;
+      font-size: 16px;
+    }
+
+    .step span {
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .footer {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 18px;
+      align-items: center;
+      padding: 12px 20px;
+      background: var(--soft2);
+      border: 1px solid #f0d4b6;
+      border-radius: 8px;
+    }
+
+    .footer b {
+      color: #8a4a12;
+      font-size: 18px;
+    }
+
+    .footer p {
+      margin: 4px 0 0;
+      color: #6f5740;
+      font-size: 14px;
+    }
+
+    .tag {
+      padding: 10px 14px;
+      background: var(--white);
+      border: 1px solid #ebc69c;
+      border-radius: 999px;
+      color: #8a4a12;
+      font-size: 14px;
+      font-weight: 900;
+      white-space: nowrap;
+    }
+
+    @media (max-width: 980px) {
+      main { padding: 24px 18px; }
+      .hero, .body-grid, .footer { grid-template-columns: 1fr; }
+      .signal-row { grid-template-columns: 1fr 1fr; }
+    }
+
+    @media (max-width: 620px) {
+      .signal-row { grid-template-columns: 1fr; }
+      .lead { font-size: 17px; }
+    }
+
+    @media print {
+      @page { size: A4 landscape; margin: 10mm; }
+      body { background: white; }
+      main { min-height: auto; padding: 0; }
+      .signal, section, .footer, .north { break-inside: avoid; }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <header class="hero">
+      <div>
+        <p class="eyebrow">DIGITAL PROMOTION GROUP / AI UTILIZATION POLICY</p>
+        <h1>全社活用を進める<br>AI推進基盤を作る</h1>
+        <p class="lead">デジタル推進グループは、個人のAI活用を部署横断の再利用資産へ変換する役割。Copilot、GPT、Codex、Skillをばらばらに試す段階から、全社で使える型に整える。</p>
+      </div>
+      <div class="north">
+        <b>方針</b>
+        <p>業務効率化＝個人の時短ではなく、全社展開できるAI業務部品を増やすこと。</p>
+      </div>
+    </header>
+
+    <div class="signal-row">
+      <div class="signal"><strong>全社活用・損益</strong><span>製品別・機種別損益、資料作成、Excel Copilot、Codex導入の入口を持つ。</span></div>
+      <div class="signal"><strong>FAQ・取説回答</strong><span>GPTでFAQや取説を回答化。Skill化すれば、問い合わせ対応の品質を揃えられる。</span></div>
+      <div class="signal"><strong>IT・ガバナンス</strong><span>グローバルIT、クラウドガイドライン、海外拠点とのやりとりをAI支援へ広げられる。</span></div>
+      <div class="signal"><strong>DX・自動化</strong><span>生成AI、自動化ツール、ノクリアAI機能の経験を推進メニューに変換できる。</span></div>
+    </div>
+
+    <div class="body-grid">
+      <section>
+        <h2>進め方の原則</h2>
+        <div class="policy">
+          <div class="policy-item"><span class="num">1</span><div><b>ユースケースを1枚化</b><p>ユースケース＝誰のどの作業をAIがどこまで担うか。全社に展開する前に、目的・入力・出力・注意点を揃える。</p></div></div>
+          <div class="policy-item"><span class="num">2</span><div><b>Skillで手順を固定</b><p>Skill＝毎回の指示、参照資料、確認観点をまとめた再利用部品。FAQ、損益資料、ガイドライン作成から優先する。</p></div></div>
+          <div class="policy-item"><span class="num">3</span><div><b>ガイドラインと同時に育てる</b><p>ルール＝禁止事項だけではなく、使ってよい入力、レビュー観点、保存場所を明記した運用基準にする。</p></div></div>
+        </div>
+      </section>
+
+      <section>
+        <h2>最初に作るもの</h2>
+        <div class="build-list">
+          <div class="build"><b>AI活用ユースケース台帳</b><p>業務、担当、入力データ、期待出力、リスク、次の改善を1行で残す。全社展開の正本にする。</p></div>
+          <div class="build"><b>FAQ・取説回答Skill</b><p>FAQ、取説、社内ルールを参照して回答案を出し、人が承認する型。回答品質と説明責任を両立する。</p></div>
+          <div class="build"><b>損益資料作成アシスト</b><p>製品別・機種別損益の集計、チェック、資料化を分解し、Excel CopilotとCodexの役割を分ける。</p></div>
+          <div class="build"><b>クラウドガイドライン作成支援</b><p>AWS等のルール案、海外拠点向け説明、レビュー観点を生成し、情報セキュリティ推進と接続する。</p></div>
+        </div>
+      </section>
+
+      <section>
+        <h2>90日ロードマップ</h2>
+        <div class="map">
+          <div class="step" data-step="01"><b>棚卸し</b><span>参加者の業務を台帳化し、筋良な3件に絞る。</span></div>
+          <div class="step" data-step="02"><b>小さく実装</b><span>FAQ、損益資料、ガイドラインの各v1を作る。</span></div>
+          <div class="step" data-step="03"><b>レビュー基準化</b><span>入力可否、出力チェック、承認者、保存場所を明文化する。</span></div>
+          <div class="step" data-step="04"><b>横展開</b><span>成功例を研修ポータルとSkill集に置き、他部署が真似できる状態にする。</span></div>
+        </div>
+      </section>
+    </div>
+
+    <aside class="footer">
+      <div>
+        <b>今日の一歩</b>
+        <p>柴田さんを起点に、各メンバーの業務を「ユースケース台帳」へ転記し、FAQ・損益・ガイドラインの3テーマをv1化する。</p>
+      </div>
+      <span class="tag">推進基盤を作る部署</span>
+    </aside>
+  </main>
+</body>
+</html>

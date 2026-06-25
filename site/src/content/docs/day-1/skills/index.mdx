@@ -1,0 +1,74 @@
+---
+title: Skillを学ぼう
+description: grill-me / handoff / teach / writing-great-skills / reflect の入口
+---
+
+import ProgressMap from '../../../../components/ProgressMap.astro';
+import SectionHead from '../../../../components/training/SectionHead.astro';
+import StepFlow from '../../../../components/training/StepFlow.astro';
+import Step from '../../../../components/training/Step.astro';
+import Callout from '../../../../components/training/Callout.astro';
+import mattPocockImage from '../../../../assets/training/matt-pocock.png';
+
+<ProgressMap current="day1-pm" />
+
+<SectionHead no="10" title="Skillを学ぼう" subtitle="よく使う5つのスキルを、使いどころで覚える" />
+
+Skillは、AIに毎回同じ進め方をさせるための手順書です。  
+プロンプトを毎回頑張るのではなく、よく使う型をスキルとして呼び出します。
+
+対象はこちらです。  
+[mattpocock/skills の productivity セクション](https://github.com/mattpocock/skills/tree/main/skills/productivity)
+
+## まず使えるようにする
+
+下のプロンプトをそのままCodexに貼る。  
+自分でリンクを読んで選ばなくても、まず外部の4つのSkillを使える状態にするための依頼です。振り返り用の `reflect` は、この研修用に別途用意したSkillとして後半で使います。
+
+```text
+https://github.com/mattpocock/skills/tree/main/skills/productivity にある4つのSkill、grill-me、handoff、teach、writing-great-skillsを私の環境でSkillにして使えるようにして。
+```
+
+## Matt Pocockってだれ？
+
+<div class="person-profile">
+  <img src={mattPocockImage.src} alt="Matt Pocock" />
+  <div>
+    <p>
+      Matt Pocock（@mattpocockuk）は、世界的に知られるTypeScript / AIエデュケーターであり、エンジニアです。
+      実践的なTypeScript学習サイト「<a href="https://www.totaltypescript.com/">Total TypeScript</a>」や
+      AIエンジニアリング学習サイト「<a href="https://www.aihero.dev/">AI Hero</a>」を運営しています。
+    </p>
+    <p>
+      GitHubプロフィールでは「TypeScript wizard」「Ex-Vercel, Stately」と紹介されており、
+      AI Heroでも、XState core teamのメンバー経験とVercelでのDeveloper Advocate経験が紹介されています。
+    </p>
+  </div>
+</div>
+
+このSkill集は、Matt Pocock本人が日常的に使う `.claude` ディレクトリ由来の「Skills for Real Engineers」です。  
+GitHub上でも非常に注目されており、2026-06-21時点で **約13.8万スター、約1.2万フォーク** があります。
+
+<StepFlow>
+  <Step no="1" title="grill-me">計画や業務テーマを深掘りする。</Step>
+  <Step no="2" title="handoff">会話を次の担当者や次セッションへ渡す。</Step>
+  <Step no="3" title="teach">学習を複数セッションで進める。</Step>
+  <Step no="4" title="writing-great-skills">良いSkillの作り方を学ぶ。</Step>
+  <Step no="5" title="reflect">セッション終わりに learning-log/ へ記録する。</Step>
+</StepFlow>
+
+## 本編で使うSkill手順集
+
+| Skill | 使う場面 |
+|---|---|
+| [grill-me](/day-1/skills/grill-me/) | 何を作るか、何が詰まりか、判断の枝を深掘りしたい |
+| [handoff](/day-1/skills/handoff/) | 次の人・次のセッションに文脈を渡したい |
+| [teach](/day-1/skills/teach/) | 1回の回答ではなく、学習を積み上げたい |
+| [writing-great-skills](/day-1/skills/writing-great-skills/) | 自分用Skillを作る、既存Skillを直す |
+| [reflect](/day-1/skills/reflect/) | セッション終わりに learning-log/ へ記録する |
+
+<Callout variant="tip" title="研修での見方">
+  ここではSkillを暗記しない。どの場面で呼ぶと仕事が進むかだけ押さえる。
+</Callout>
+
+各スキルの詳しい手順も、このセッション10の中にまとめてあります。必要なものだけ開いて試してください。次は [門限の話＝モデリング（11）](/day-1/modeling/) へ進む。

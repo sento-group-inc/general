@@ -1,0 +1,116 @@
+---
+title: 便利リポジトリ一覧
+description: 研修で使うOSSと用途の早見表。気になるものは導入前に判断する。
+---
+
+import ProgressMap from '../../../components/ProgressMap.astro';
+import SectionHead from '../../../components/training/SectionHead.astro';
+import Callout from '../../../components/training/Callout.astro';
+
+<ProgressMap current="reference" />
+
+<SectionHead no="R" title="便利リポジトリ一覧" subtitle="当日コアを先に押さえ、必要になったら1つずつ導入する" />
+
+このページは**読むだけの一覧ではありません**。  
+気になるGitHubリポジトリを選び、Codexに「何のために入れるか」「今の環境で動くか」を判断させるための演習台です。
+
+<Callout variant="tip" title="導入前の判断プロンプト">
+  リポジトリURLをコピーして、Codexに次を貼ってください。
+
+  ```text
+  このリポジトリを導入すべきか判断してください。
+  用途・セットアップ手順・リスク・代替案を整理してから、入れる／入れないを決めてください。
+  URL: [URL]
+  ```
+</Callout>
+
+## 当日コア（午前〜午後で使う）
+
+ここにないものは、必要になったタイミングで上のプロンプトを使って判断してください。
+
+| リポジトリ | 研修での使いどころ | なぜ使うか | リンク |
+|---|---|---|---|
+| `upstash/context7` | ライブラリやAPIの調査・実装 | AIの記憶ではなく、**今の公式ドキュメント**を見ながら判断するため | [GitHub](https://github.com/upstash/context7) |
+| `openclaw/gogcli` | Sheets / Drive 連携デモ | スプレッドシートを自然言語から作り・更新する入口になるため | [GitHub](https://github.com/openclaw/gogcli) |
+| `teng-lin/notebooklm-py` | 資料置き場として NotebookLM を使う | 毎回PDFや記事を貼らず、**資料群を参照する入口**を作るため | [GitHub](https://github.com/teng-lin/notebooklm-py) |
+| `unclecode/crawl4ai` | WebページをInputにする | 公開ページをMarkdown化し、Codexで要約・比較・業務フロー化に使うため | [GitHub](https://github.com/unclecode/crawl4ai) |
+| `garrytan/gbrain` | 合宿後の記憶運用 | 判断履歴・業務ナレッジを蓄積し、次回のAIが過去の文脈を引き出せる状態を作るため | [GitHub](https://github.com/garrytan/gbrain) |
+
+<Callout variant="note" title="agent-browser は本流外">
+  HTMLのUI確認用 `vercel-labs/agent-browser` は一覧に載せていますが、Windows Defender 等で当日詰まるリスクがあるため**研修本流では使いません**。必要になったら下の「エージェント・スキル関連」から判断してください。
+</Callout>
+
+### 優先度の目安
+
+| リポジトリ | 優先度 | 使う場面 |
+|---|---|---|
+| gogcli | 当日コア | Sheets連携デモ |
+| notebooklm-py | 当日コア | 資料連携デモ |
+| crawl4ai | 当日コア | 公開WebページのInput化 |
+| gbrain | 当日コア | AGENTS / memory / state の長期運用 |
+| context7 | 後日でOK | 開発時の参照精度向上 |
+| agent-browser | 後日でOK | ローカルHTML・公開URLのUI確認（本流外） |
+
+---
+
+## セットアップ — Codex本体・環境
+
+| リポジトリ | 用途 | 難易度 | リンク |
+|---|---|---|---|
+| `openai/codex` | Codex CLI のインストール元。CLIベースで使う場合はここから | 易 | [GitHub](https://github.com/openai/codex) |
+| `openclaw/gogcli` | Codex からスプレッドシートを作成・読み書き | 中 | [GitHub](https://github.com/openclaw/gogcli) |
+
+<Callout variant="note" title="Codex.app を使う場合">
+  デスクトップ版 Codex を使っている場合、`openai/codex` は必須ではありません。CLI に切り替えるタイミングで参照してください。
+</Callout>
+
+---
+
+## MCP — 目と手を増やす
+
+MCP（Model Context Protocol）は、Codex に**外部ツールへの接続口**を足す仕組みです。
+
+| リポジトリ | 用途 | 難易度 | リンク |
+|---|---|---|---|
+| `upstash/context7` | 最新ライブラリのドキュメントをリアルタイム参照。GAS・React 等の調査に | 易 | [GitHub](https://github.com/upstash/context7) |
+| `exa-labs/exa-mcp-server` | Web・X投稿・コードを高精度検索。裏取りや競合調査に | 易 | [GitHub](https://github.com/exa-labs/exa-mcp-server) |
+| `github/github-mcp-server` | Issue / PR / リポジトリ情報を Codex から参照 | 中 | [GitHub](https://github.com/github/github-mcp-server) |
+| `chrome-devtools-mcp` | ブラウザの DOM・コンソール・ネットワークを確認。HTMLアプリの検証に | 中 | [npm](https://www.npmjs.com/package/chrome-devtools-mcp) |
+
+---
+
+## エージェント・スキル関連
+
+| リポジトリ | 用途 | 難易度 | リンク |
+|---|---|---|---|
+| `vercel-labs/agent-browser` | ページを snapshot しながら改善する。研修中の HTML 確認で使う | 中 | [GitHub](https://github.com/vercel-labs/agent-browser) |
+| `garrytan/gbrain` | PC内の判断・業務ナレッジを知識グラフ＋ハイブリッド検索で整理。MCP 対応で Claude Code / Codex / Cursor 全対応。PGLite 使用でサーバー不要 | 中 | [GitHub](https://github.com/garrytan/gbrain) |
+
+<Callout variant="note" title="マルチエージェント系は後回しにする">
+  複数エージェントを並列起動する実験リポジトリは、研修の本筋からは外します。まずは gbrain を通してから検討してください。
+</Callout>
+
+---
+
+## データ連携・自動化
+
+| リポジトリ | 用途 | 難易度 | リンク |
+|---|---|---|---|
+| `teng-lin/notebooklm-py` | PDF や記事を NotebookLM に置き、Codex から呼び出す。資料の横断検索に。**非公式**なので本番依存には注意 | 中 | [GitHub](https://github.com/teng-lin/notebooklm-py) |
+| `unclecode/crawl4ai` | 公開WebページをMarkdown化し、Codexへ渡す。APIキー不要で小さく試せる | 中 | [GitHub](https://github.com/unclecode/crawl4ai) |
+
+---
+
+## 使い方の原則
+
+1. **当日コアだけ先に通す** — 上の5つを優先。残りは必要になってから。
+2. **1つ入れて動作確認してから次** — まとめて入れると、どこで詰まったか分からなくなる。
+3. **詰まったらエラー全文を貼る** — ログを省略せず Codex に渡す。[詰まったら](/start/stuck/) も参照。
+4. **導入判断を省略しない** — 「便利そう」だけでは入れない。用途・リスク・代替を整理してから入れる。
+
+## 関連ページ
+
+- [事前準備・セットアップ](/start/prework/)
+- [おすすめカスタム指示](/reference/custom-instructions/)
+- [スラッシュコマンド早見表](/reference/slash-commands/)
+- [詰まったら](/start/stuck/)

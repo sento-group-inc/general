@@ -3,7 +3,6 @@ title: スラッシュコマンド早見表
 description: 研修中に使うCodexコマンドの一覧
 ---
 
-# Codex スラッシュコマンド早見表（振り返り用・独立ページ）
 
 セッション中に手元で見ながら使う。Codex**デスクトップアプリ**のスラッシュコマンドは下記7つ（[公式: app/commands](https://developers.openai.com/codex/app/commands)）。
 

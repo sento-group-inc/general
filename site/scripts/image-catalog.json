@@ -1,0 +1,46 @@
+{
+  "codex-menu.png": {
+    "screen": "左サイドバー（新規チャット・検索・プラグイン）",
+    "useFor": ["メニュー", "左メニュー", "ナビ"]
+  },
+  "codex-general-settings.png": {
+    "screen": "一般設定（言語・速度・スリープ防止・Ctrl+Enter）",
+    "useFor": ["一般設定", "速度", "スリープ"]
+  },
+  "codex-workmode-permissions.png": {
+    "screen": "作業モード（日常業務/コーディング）＋権限3段階",
+    "useFor": ["作業モード", "権限", "デフォルト", "フルアクセス"]
+  },
+  "codex-voice-notification.png": {
+    "screen": "音声入力（ホットキー・辞書）＋通知設定",
+    "useFor": ["音声", "ホットキー", "通知", "辞書"]
+  },
+  "codex-config-sandbox.png": {
+    "screen": "構成：承認ポリシー・サンドボックス（config.toml）",
+    "useFor": ["承認", "サンドボックス", "config", "読み取り専用"]
+  },
+  "codex-plugins.png": {
+    "screen": "プラグイン一覧（Featured / Business）",
+    "useFor": ["プラグイン", "Box", "M365"]
+  },
+  "codex-skills.png": {
+    "screen": "スキル一覧（個人スキル）",
+    "useFor": ["スキル", "SKILL", "grill"]
+  },
+  "codex-browser-cdp.png": {
+    "screen": "ブラウザ設定（CDP・承認・閲覧データ）",
+    "useFor": ["ブラウザ", "CDP", "デベロッパー"]
+  },
+  "codex-computer-use.png": {
+    "screen": "コンピュータ使用（任意アプリ・Chrome・ロック中）",
+    "useFor": ["コンピュータ", "Chrome", "ロック中"]
+  },
+  "codex-memory.png": {
+    "screen": "パーソナライズ（性格・カスタム指示・メモリ）",
+    "useFor": ["メモリ", "パーソナライズ", "カスタム指示"]
+  },
+  "wajima-profile.png": {
+    "screen": "講師自己紹介スライド",
+    "useFor": ["自己紹介", "講師"]
+  }
+}

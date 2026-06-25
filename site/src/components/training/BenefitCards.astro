@@ -1,0 +1,23 @@
+---
+interface CardItem {
+  title: string;
+  text: string;
+}
+
+interface Props {
+  items: CardItem[];
+}
+
+const { items } = Astro.props;
+---
+
+<div class="training-benefit-cards">
+  {
+    items.map((item) => (
+      <article class="training-benefit-card">
+        <strong>{item.title}</strong>
+        <p>{item.text}</p>
+      </article>
+    ))
+  }
+</div>

@@ -1,0 +1,68 @@
+---
+title: teach
+description: 複数セッションで学ぶための、状態を持つ学習スキル
+---
+
+import ProgressMap from '../../../../components/ProgressMap.astro';
+
+<ProgressMap current="day1-pm" />
+
+`/teach` は、「このトピックを複数セッションにわたって学ぶ」前提のスキルです。  
+いまの会話で1回答えるだけではなく、学習用ワークスペースを育てていくタイプです。
+
+元スキル: [teach / SKILL.md](https://github.com/mattpocock/skills/blob/main/skills/productivity/teach/SKILL.md)
+
+## 何をするスキルか
+
+あなたが「○○を教えて」と言ったとき、エージェントは家庭教師として動きます。
+
+いきなり長文解説を返すのではなく、
+
+- なぜ学ぶか（MISSION）
+- 何を読むか（RESOURCES）
+- 何を練習するか（lessons）
+- 何を覚えたか（learning-records）
+
+を、同じフォルダに蓄積していきます。
+
+## ワークスペースの構成
+
+| ファイル/フォルダ | 役割 |
+|---|---|
+| `MISSION.md` | 学ぶ理由・ゴール |
+| `RESOURCES.md` | 信頼できる外部資料リスト |
+| `lessons/*.html` | 1レッスン1HTML。短く、実践的に学ぶ |
+| `reference/*.html` | チートシート・用語集など、後から見返す資料 |
+| `learning-records/*.md` | 学んだこと・次に何を教えるかの記録 |
+| `assets/*` | レッスン間で使い回すCSS、クイズ、図解部品 |
+| `NOTES.md` | あなたの好み・メモ |
+
+## 設計思想
+
+- **知識**: 外部の高品質リソースから取る。AIの記憶だけに頼らない
+- **スキル**: 短いレッスン、クイズ、実践で反復する
+- **知恵**: 必要ならコミュニティや現場へ委ねる
+
+また、その場で答えられること（fluency）と、長く残ること（storage strength）を分け、後者を重視します。
+
+## 通常のチャットとの違い
+
+| 通常 | /teach |
+|---|---|
+| その場のQ&A | 学習カリキュラムの蓄積 |
+| 説明中心 | レッスンHTML＋参照資料＋記録 |
+| 1回完結 | 複数セッション前提 |
+
+一言で言うと: `/teach` は「答える」スキルではなく、「学びをフォルダに残しながら、次の1歩を設計する」スキルです。
+
+## 使うなら
+
+```text
+React Hooks を /teach で学びたい。MISSION から作って。
+```
+
+```text
+前回の learning-record を見て、次のレッスンを出して。
+```
+
+次は [reflect（振り返りskill）](/day-1/skills/reflect/) へ進む。

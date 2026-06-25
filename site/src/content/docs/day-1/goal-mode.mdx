@@ -1,0 +1,54 @@
+---
+title: Goalモードを使う
+description: 長めの作業をゴール化し、完了条件と進捗を見える状態にする
+---
+
+import ProgressMap from '../../../components/ProgressMap.astro';
+import SectionHead from '../../../components/training/SectionHead.astro';
+import StepFlow from '../../../components/training/StepFlow.astro';
+import Step from '../../../components/training/Step.astro';
+import Callout from '../../../components/training/Callout.astro';
+
+<ProgressMap current="day1-pm" />
+
+<SectionHead no="8" title="Goalモードを使う" subtitle="長い作業を、終わりが見える演習に変える" />
+
+`/goal` は、Codexに長めの作業を任せる時に、目的と完了条件を先に固定するための入口です。途中で話が散らかっても、ゴールに戻って進めやすくなります。
+
+## 使う場面
+
+<StepFlow>
+  <Step no="1" title="作業が数十分以上かかる">調査、資料作成、複数ファイル整理などに使う。</Step>
+  <Step no="2" title="完了条件を明確にしたい">何ができたら終わりかを先に決めたい時に使う。</Step>
+  <Step no="3" title="途中で確認したい">進捗、残り作業、詰まりを見える状態にしたい時に使う。</Step>
+</StepFlow>
+
+## 実践
+
+次のプロンプトをCodexに貼ります。
+
+```text
+/goal
+目的:
+今日の研修フォルダに、議事録要約テンプレートのv1を作る。
+
+完了条件:
+- outputs/meeting-summary-template.md がある
+- テンプレートに「会議概要」「決定事項」「未決事項」「次アクション」が入っている
+- learning-log/YYYY-MM-DD.md に、作ったものと次に試すことが記録されている
+
+進め方:
+まず作業計画を短く出してから、最初のファイル作成に進んでください。
+```
+
+作業が進んだら、途中で次のように聞きます。
+
+```text
+いまの進捗、残り作業、詰まっていることを3行で教えてください。
+```
+
+<Callout variant="tip" title="GoalとPlanの使い分け">
+  `/plan` は作業前の設計。`/goal` は長めの作業を完了条件つきで走らせる入口。迷ったら、まず `/plan` で小さく計画し、作業が長くなりそうなら `/goal` にする。
+</Callout>
+
+次は [Input：プラグイン・音声・写真・資料](/day-1/plugins/) へ進みます。

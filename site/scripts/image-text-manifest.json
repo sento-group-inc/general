@@ -1,0 +1,33 @@
+{
+  "start/prework.mdx": [
+    { "import": "menuShot", "titleKeywords": ["メニュー", "左"] },
+    { "import": "generalSettingsShot", "titleKeywords": ["一般設定"] },
+    { "import": "workmodeShot", "titleKeywords": ["作業モード", "権限"] },
+    { "import": "voiceShot", "titleKeywords": ["音声"] },
+    { "import": "memoryShot", "titleKeywords": ["パーソナライズ", "メモリ"] }
+  ],
+  "day-1/security.mdx": [
+    { "import": "workmodeShot", "titleKeywords": ["権限", "デフォルト"] },
+    { "import": "sandboxShot", "titleKeywords": ["承認", "サンドボックス"] },
+    { "import": "browserShot", "titleKeywords": ["ブラウザ", "CDP"] },
+    { "import": "computerShot", "titleKeywords": ["コンピュータ"] },
+    { "import": "pluginsShot", "titleKeywords": ["プラグイン"] }
+  ],
+  "day-1/codex-mastery.mdx": [
+    { "import": "agentsHero", "titleKeywords": ["AGENTS"] }
+  ],
+  "day-1/agents-logging.mdx": [
+    { "import": "agentsHero", "titleKeywords": ["AGENTS"] }
+  ],
+  "day-1/input-methods.mdx": [
+    { "import": "voiceShot", "titleKeywords": ["音声"] },
+    { "import": "pluginsShot", "titleKeywords": ["プラグイン"] }
+  ],
+  "day-1/plugins.mdx": [
+    { "import": "pluginsShot", "titleKeywords": ["プラグイン"] }
+  ],
+  "day-1/modeling-debrief.mdx": [
+    { "import": "stakeholderImage", "titleKeywords": ["ステークホルダー"] },
+    { "import": "businessFlowImage", "titleKeywords": ["業務フロー"] }
+  ]
+}

@@ -1,19 +1,86 @@
 ---
-title: 自由に触ってみる
-description: プライベートな興味からCodexの可能性を試す30分
+title: 自由探索（7）
+description: 設定確認後に私的テーマを触り、午後の業務系に橋渡しする
 ---
 
-## 今ここ
+import ProgressMap from '../../../components/ProgressMap.astro';
+import SectionHead from '../../../components/training/SectionHead.astro';
+import StepFlow from '../../../components/training/StepFlow.astro';
+import Step from '../../../components/training/Step.astro';
+import Callout from '../../../components/training/Callout.astro';
+import PromptBlock from '../../../components/PromptBlock.astro';
 
-セットアップ直後の30分は、仕事に限定しません。趣味、旅行、料理、学習など、自分が本当に気になることをCodexへ相談してください。
+<ProgressMap current="day1-am" />
 
-## 迷ったら
+セットアップとセキュリティ設定の直後は、仕事に限定しません。  
+趣味、旅行、料理、学習など、自分が本当に気になることをCodexへ相談してください。
 
-- 週末の旅行プランを一緒に考える
-- 冷蔵庫の食材から献立を作る
-- 気になっているテーマを調べて整理する
-- 趣味の記録ページをHTMLで作る
+<SectionHead no="7" title="自由探索" subtitle="仕事の正解を探す前に、自分の興味でAIの可動域を知る" />
 
-終了5分前に、隣の人へ「意外にできたこと」を1つ共有します。
+<Callout variant="warn" title="最低10分は確保">
+  セットアップが遅れた人も、自由探索をゼロにしない。短くても自分のテーマで触る。
+</Callout>
 
-次は[性格診断HTML](/day-1/personality-html/)を作ります。
+## 進め方
+
+<StepFlow>
+  <Step no="1" title="Codexを開く">新しいチャットを開き、仕事ではなく自分が気になるテーマを1つ選ぶ。</Step>
+  <Step no="2" title="まず雑に聞く">下の例をそのまま使っても、自分の言葉に変えてもよい。</Step>
+  <Step no="3" title="1回だけ深掘りする">返ってきた答えに「もっと具体的に」「自分向けに」と追加で聞く。</Step>
+  <Step no="4" title="終了5分前に共有">隣の人へ、試したこと・意外にできたこと・次に試したいことを1つずつ話す。</Step>
+</StepFlow>
+
+## 迷ったら：この3つから選ぶ
+
+最初は「ちゃんとした業務」にしなくてOK。  
+アプリを作る、画像を作る、生活の小さな不便を試す、くらいがちょうどよい。
+
+### 例1：TODOアプリを作る
+
+<PromptBlock text={`シンプルなTODOアプリを作ってください。
+
+要件:
+- 1ファイルのHTMLで動く
+- タスクを追加、完了、削除できる
+- ブラウザで開いたらすぐ使える
+- 見た目はシンプルで見やすく
+
+作成後、ファイルの開き方も教えてください。`} />
+
+### 例2：家計簿アプリを作る
+
+<PromptBlock text={`個人用の簡単な家計簿アプリを作ってください。
+
+要件:
+- 1ファイルのHTMLで動く
+- 日付、カテゴリ、金額、メモを入力できる
+- 支出の合計とカテゴリ別合計を表示する
+- サンプルデータを3件入れておく
+- スマホでも見やすい画面にする
+
+作成後、次に改善できることも3つ教えてください。`} />
+
+### 例3：画像を生成してみる
+
+ChatGPTでもCodexでも画像は作れます。Codexでは、ターミナル1行で画像生成を試せます。
+
+<PromptBlock text={`codex exec '$imagegen やさしい雰囲気の研修用アイコン。ノートPCの横に、AIを表す小さな光の球が浮かんでいる。フラットイラスト、白背景、緑と青を基調、文字なし'`} />
+
+### 例4：自分のテーマで相談する
+
+<PromptBlock text={`私は [テーマ] に興味があります。
+初心者でも今日から試せることを3つ出し、最初の1つを具体的な手順にしてください。
+
+できれば、最後に「Codexで実際に作れるもの」の案も1つ出してください。`} />
+
+## 5分前共有メモ
+
+終了5分前に、隣の人へ次の3点を共有します。
+
+```text
+試したこと：
+意外にできたこと：
+次に試したいこと：
+```
+
+自由に触るほど、AIは「自分の近いテーマ」から動き出す。次は Day1 PM の [Codexを操る（8）](/day-1/codex-mastery/) へ進みます。

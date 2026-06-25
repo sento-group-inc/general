@@ -1,0 +1,67 @@
+---
+title: 作業分担と着手（15）
+description: 15人で分担を決め、その場で制作を開始する
+---
+
+import ProgressMap from '../../../components/ProgressMap.astro';
+import StepFlow from '../../../components/training/StepFlow.astro';
+import Step from '../../../components/training/Step.astro';
+import Callout from '../../../components/training/Callout.astro';
+
+<ProgressMap current="day2" />
+
+## 分担の原則
+
+- 1人1成果物を基本にする
+- 依存関係があるものは先に担当を決める
+- 午後を待たず、決まった人から着手する
+
+## 分担表
+
+| 担当 | 作るもの | 参照入力 | 最初の締切 |
+| --- | --- | --- | --- |
+| 例: 山田 | 議事録要約の型 | 過去議事録3本 | 14:30 |
+
+## 型と分担
+
+制作テーマが決まったら、過去資料や読み手をCodexに渡し、まずその成果物の型を作らせてから着手します。
+
+```text
+この制作テーマに合う成果物の型を作ってください。
+
+担当：
+作るもの：
+読み手：
+参照入力：
+
+まず見出し構成だけを出し、未決事項は [未決] と書いてください。
+```
+
+## 15分タイムボックス
+
+<StepFlow>
+  <Step no="0-3分" title="候補を並べる">棚卸しで出た成果物候補を全員が見える場所に置く。</Step>
+  <Step no="3-8分" title="担当を仮置きする">迷ったら「一番困っている人」か「資料を持っている人」が持つ。</Step>
+  <Step no="8-12分" title="最初の提出時刻を決める">完璧版ではなく v1 の提出時刻を置く。</Step>
+  <Step no="12-15分" title="相談先を決める">詰まった時に聞く相手を1人決め、制作へ入る。</Step>
+</StepFlow>
+
+```text
+担当：
+作るもの：
+参照入力：
+v1提出時刻：
+相談先：
+```
+
+## 決めること
+
+1. 誰が何を作るか
+2. 最初の提出時刻
+3. 詰まった時の相談先
+
+<Callout variant="check" title="ここで止まらない">
+  分担は仮でよい。決まった人から午前中に制作へ着手する。
+</Callout>
+
+次は [本制作（16）](/day-2/production/) へ進みます。

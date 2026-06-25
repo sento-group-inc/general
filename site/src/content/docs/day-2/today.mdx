@@ -1,0 +1,78 @@
+---
+title: 今日の流れ
+description: Day2のスケジュールと、成果発表のIPOA軸を先に押さえる
+---
+
+import ProgressMap from '../../../components/ProgressMap.astro';
+import SectionHead from '../../../components/training/SectionHead.astro';
+import IntroPunch from '../../../components/training/IntroPunch.astro';
+import StepFlow from '../../../components/training/StepFlow.astro';
+import Step from '../../../components/training/Step.astro';
+import Callout from '../../../components/training/Callout.astro';
+
+<ProgressMap current="day2" />
+
+<SectionHead no="Day2" title="今日の流れ" subtitle="自分の業務に、AIを1つ落とす日" />
+
+<IntroPunch
+  aruaru="一日かけて何をどこまでやるのか、始まる前は見えにくい。"
+  dakara="先にゴールと発表の型を置く。作りながら、発表で話すことが埋まっていく。"
+  owari="夕方には、自分の業務に効くv1と『明日やる一歩』が手元に残る。"
+/>
+
+## 今日のゴール
+
+Day1で触って広げた道具を、**自分の業務に1つ落とす**。
+完璧な完成品ではなく、明日から実務で試せる **v1** を1人1つ持ち帰る。
+
+## タイムテーブル（目安）
+
+途中で適宜休憩を取ります。時間は当日調整します。
+
+| 時間 | 内容 |
+|---|---|
+| 9:00 – 9:15 | Day1の接続・今日のゴール確認 |
+| 9:15 – 10:05 | 業務棚卸し（TOC）：止まっている場所を1つ選ぶ |
+| 10:05 – 10:50 | 制約をゆるめる制作テーマを決める |
+| 10:50 – 11:10 | 作業分担・着手 |
+| 11:10 – 12:00 | 本制作 v1 着手 |
+| 12:00 – 13:00 | 休憩 |
+| 13:00 – 15:00 | 本制作 v1 → v2 |
+| 15:00 – 15:40 | 振り返りskill・提出の仕込み |
+| 15:40 – 16:30 | 全員発表 |
+| 16:30 – 17:00 | 振り返り・クローズ |
+
+<Callout variant="note" title="進め方は朝に相談して決める">
+  業務棚卸し（TOC）を全体で見ながら進めるか、グループごとに進めるかは、朝にみなさんと相談して決めます。講師は答えを配る人ではなく、方向性を出す役です。何を作るかは自分で決めます。
+</Callout>
+
+## 成果発表の型（IPOA）
+
+発表は1人2〜3分。うまく話そうとしなくてよいので、**この4つの順で話す**だけにします。
+順番は **O → I → P → A**。先に「何を作ったか」を見せ、最後に「明日どうするか」で締めます。
+
+<StepFlow>
+  <Step no="O" title="Output：作ったもの">何を作ったかを最初に見せる。画面を出して「これです」でよい。</Step>
+  <Step no="I" title="Input：渡した材料">それを作るために何を渡したか（過去資料、音声、Webページ、箇条書きなど）。</Step>
+  <Step no="P" title="Process：AIにやらせたこと">AI（Codex）に何をどう指示したか。使ったSkillやプラグインがあれば一言。</Step>
+  <Step no="A" title="Action：明日からの一歩">これを使って、明日からどの業務でどう動くか。動詞で1つ。</Step>
+</StepFlow>
+
+### 話し方のひな形
+
+```text
+私が作ったのは〔Output〕です。
+これに必要な〔Input〕として、〇〇を渡しました。
+〔Process〕として、AIに〇〇をやらせました（使ったSkill：〇〇）。
+なので明日から〔Action〕として、〇〇をやっていく予定です。
+```
+
+<Callout variant="check" title="完成度より、流れが言えること">
+  v1が荒くても問題ない。「何の詰まりを、何でゆるめたか」がIPOAで言えれば、その業務は前に進み始めている。
+</Callout>
+
+<Callout variant="tip" title="発表は作りながら埋まる">
+  O・I・P・Aは、制作中にメモしておくと発表がそのまま完成する。`learning-log/` に作業の途中で書き留めておくと、夕方の振り返りもラクになる。
+</Callout>
+
+次は [業務棚卸し（TOC）（14）](/day-2/work-inventory/) へ進みます。

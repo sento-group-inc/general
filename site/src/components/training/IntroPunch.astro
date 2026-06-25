@@ -1,0 +1,24 @@
+---
+interface Props {
+  aruaru: string;
+  dakara: string;
+  owari: string;
+}
+
+const { aruaru, dakara, owari } = Astro.props;
+---
+
+<div class="training-intro-punch">
+  <div>
+    <strong>あるある</strong>
+    <span>{aruaru}</span>
+  </div>
+  <div>
+    <strong>だから</strong>
+    <span>{dakara}</span>
+  </div>
+  <div>
+    <strong>終わると</strong>
+    <span>{owari}</span>
+  </div>
+</div>

@@ -1,0 +1,24 @@
+---
+interface ImageItem {
+  src: string;
+  alt: string;
+  caption?: string;
+}
+
+interface Props {
+  items: ImageItem[];
+}
+
+const { items } = Astro.props;
+---
+
+<div class="training-image-grid">
+  {
+    items.map((item) => (
+      <figure>
+        <img src={item.src} alt={item.alt} loading="lazy" />
+        {item.caption && <figcaption>{item.caption}</figcaption>}
+      </figure>
+    ))
+  }
+</div>

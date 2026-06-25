@@ -1,0 +1,351 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>制御開発 AI活用方針概要</title>
+  <style>
+    :root {
+      --ink: #1c2320;
+      --muted: #65716b;
+      --line: #d9e1dc;
+      --paper: #f8faf8;
+      --white: #ffffff;
+      --deep: #214437;
+      --main: #4b8168;
+      --accent: #b36b42;
+      --soft: #eaf4ef;
+      --soft2: #fff0e8;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      color: var(--ink);
+      font-family: "Hiragino Sans", "Yu Gothic", "Meiryo", system-ui, sans-serif;
+      background: var(--paper);
+      line-height: 1.55;
+    }
+
+    main {
+      width: min(1440px, 100vw);
+      min-height: 100vh;
+      margin: 0 auto;
+      padding: 22px 42px 20px;
+      display: grid;
+      grid-template-rows: auto auto 1fr auto;
+      gap: 14px;
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: 1.25fr .75fr;
+      gap: 24px;
+      align-items: end;
+      border-bottom: 4px solid var(--deep);
+      padding-bottom: 16px;
+    }
+
+    .eyebrow {
+      margin: 0 0 10px;
+      color: var(--main);
+      font-size: 15px;
+      font-weight: 800;
+      letter-spacing: .08em;
+    }
+
+    h1 {
+      margin: 0;
+      color: var(--deep);
+      font-size: clamp(31px, 3.3vw, 46px);
+      line-height: 1.08;
+      letter-spacing: 0;
+    }
+
+    .lead {
+      margin: 10px 0 0;
+      max-width: 860px;
+      color: #33443b;
+      font-size: 18px;
+      font-weight: 700;
+    }
+
+    .north {
+      background: var(--deep);
+      color: var(--white);
+      padding: 16px 20px;
+      border-radius: 8px;
+    }
+
+    .north b {
+      display: block;
+      margin-bottom: 8px;
+      color: #f4bf98;
+      font-size: 18px;
+    }
+
+    .north p {
+      margin: 0;
+      font-size: 17px;
+      font-weight: 700;
+    }
+
+    .signal-row {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+    }
+
+    .signal {
+      min-height: 104px;
+      padding: 14px 18px;
+      background: var(--white);
+      border: 1px solid var(--line);
+      border-top: 5px solid var(--main);
+      border-radius: 8px;
+    }
+
+    .signal strong {
+      display: block;
+      margin-bottom: 8px;
+      color: var(--deep);
+      font-size: 18px;
+    }
+
+    .signal span {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .body-grid {
+      display: grid;
+      grid-template-columns: .9fr 1.12fr .98fr;
+      gap: 20px;
+      align-items: stretch;
+    }
+
+    section {
+      background: var(--white);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 18px 20px;
+    }
+
+    h2 {
+      margin: 0 0 12px;
+      color: var(--deep);
+      font-size: 24px;
+      line-height: 1.25;
+    }
+
+    .policy {
+      display: grid;
+      gap: 12px;
+    }
+
+    .policy-item {
+      display: grid;
+      grid-template-columns: 42px 1fr;
+      gap: 12px;
+      align-items: start;
+      padding: 10px 0;
+      border-top: 1px solid var(--line);
+    }
+
+    .policy-item:first-child { border-top: 0; padding-top: 0; }
+
+    .num {
+      display: grid;
+      place-items: center;
+      width: 38px;
+      height: 38px;
+      border-radius: 999px;
+      background: var(--soft);
+      color: var(--main);
+      font-weight: 900;
+    }
+
+    .policy-item b {
+      display: block;
+      margin-bottom: 4px;
+      font-size: 17px;
+    }
+
+    .policy-item p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .build-list {
+      display: grid;
+      gap: 12px;
+    }
+
+    .build {
+      padding: 11px 16px;
+      background: linear-gradient(90deg, var(--soft), #ffffff);
+      border-left: 5px solid var(--main);
+      border-radius: 6px;
+    }
+
+    .build b {
+      display: block;
+      margin-bottom: 4px;
+      font-size: 17px;
+    }
+
+    .build p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .map {
+      display: grid;
+      gap: 10px;
+    }
+
+    .step {
+      position: relative;
+      padding: 10px 14px 10px 46px;
+      background: #fbfcfd;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      min-height: 62px;
+    }
+
+    .step::before {
+      content: attr(data-step);
+      position: absolute;
+      top: 10px;
+      left: 13px;
+      color: var(--accent);
+      font-weight: 900;
+    }
+
+    .step b {
+      display: block;
+      font-size: 16px;
+    }
+
+    .step span {
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .footer {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 18px;
+      align-items: center;
+      padding: 12px 20px;
+      background: var(--soft2);
+      border: 1px solid #efcfbd;
+      border-radius: 8px;
+    }
+
+    .footer b {
+      color: #8a4d29;
+      font-size: 18px;
+    }
+
+    .footer p {
+      margin: 4px 0 0;
+      color: #6f5647;
+      font-size: 14px;
+    }
+
+    .tag {
+      padding: 10px 14px;
+      background: var(--white);
+      border: 1px solid #e7c5b1;
+      border-radius: 999px;
+      color: #8a4d29;
+      font-size: 14px;
+      font-weight: 900;
+      white-space: nowrap;
+    }
+
+    @media (max-width: 980px) {
+      main { padding: 24px 18px; }
+      .hero, .body-grid, .footer { grid-template-columns: 1fr; }
+      .signal-row { grid-template-columns: 1fr 1fr; }
+    }
+
+    @media (max-width: 620px) {
+      .signal-row { grid-template-columns: 1fr; }
+      .lead { font-size: 17px; }
+    }
+
+    @media print {
+      @page { size: A4 landscape; margin: 10mm; }
+      body { background: white; }
+      main { min-height: auto; padding: 0; }
+      .signal, section, .footer, .north { break-inside: avoid; }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <header class="hero">
+      <div>
+        <p class="eyebrow">CONTROL DEVELOPMENT / AI UTILIZATION POLICY</p>
+        <h1>設計・テスト・レビューを<br>AIで再利用可能にする</h1>
+        <p class="lead">制御開発は、設計書、テスト設計、コードレビュー、部品データ抽出など、専門判断の前後にある作業が多い。AIには判断を丸投げせず、入力整理と検証観点を強くする役割を持たせる。</p>
+      </div>
+      <div class="north">
+        <b>方針</b>
+        <p>AI活用＝開発者の代替ではなく、設計判断を速く正確にする作業環境を作ること。</p>
+      </div>
+    </header>
+
+    <div class="signal-row">
+      <div class="signal"><strong>設計・テスト設計</strong><span>室外機、ネットワークアダプタ、ファーム先行開発で設計書やテスト観点にAIを使っている。</span></div>
+      <div class="signal"><strong>Codex実践層</strong><span>VS Code、Codex、Skill、AGENTS.mdを独学で進めた人がいて、体系化の起点になれる。</span></div>
+      <div class="signal"><strong>レビュー・保守</strong><span>他者コードの概要確認、ワークフロー保守、デグレ対策、トークン設計に課題がある。</span></div>
+      <div class="signal"><strong>技術データ抽出</strong><span>電気ノイズ、回路設計、部品データ抽出など、ばらつく入力を整える需要が強い。</span></div>
+    </div>
+
+    <div class="body-grid">
+      <section>
+        <h2>進め方の原則</h2>
+        <div class="policy">
+          <div class="policy-item"><span class="num">1</span><div><b>専門判断の前を整える</b><p>入力整理＝仕様、制約、既存コード、部品情報を同じ粒度で並べること。ここをAIに任せる。</p></div></div>
+          <div class="policy-item"><span class="num">2</span><div><b>テスト観点を資産化</b><p>テスト観点＝機能、異常系、デグレ、環境差分の確認リスト。案件ごとに捨てず、Skillへ移す。</p></div></div>
+          <div class="policy-item"><span class="num">3</span><div><b>レビューを会話から型へ</b><p>レビュー型＝要約、変更点、リスク、追加テスト、未確定事項を同じ順番で出す確認手順。</p></div></div>
+        </div>
+      </section>
+
+      <section>
+        <h2>最初に作るもの</h2>
+        <div class="build-list">
+          <div class="build"><b>設計書作成Skill</b><p>仕様メモ、既存設計、制約を入力し、設計方針、影響範囲、未決事項を出す。レビュー前のたたき台にする。</p></div>
+          <div class="build"><b>テスト設計・デグレ確認Skill</b><p>変更内容から正常系、異常系、境界値、デグレ確認、追加で必要な実機確認を生成する。</p></div>
+          <div class="build"><b>コード概要・レビューSkill</b><p>他者コードの目的、処理流れ、危険箇所、読み替えポイントを抽出し、レビュー時間を短縮する。</p></div>
+          <div class="build"><b>部品・シミュレーションデータ整形テンプレート</b><p>ばらつく入力を項目名、単位、出典、欠損、変換ルール付きの表へ整える。</p></div>
+        </div>
+      </section>
+
+      <section>
+        <h2>90日ロードマップ</h2>
+        <div class="map">
+          <div class="step" data-step="01"><b>代表業務を選ぶ</b><span>設計書、テスト設計、レビュー、データ抽出から各1テーマを選ぶ。</span></div>
+          <div class="step" data-step="02"><b>v1を作る</b><span>既存サンプルを使い、Codexで手順と出力テンプレートを作成する。</span></div>
+          <div class="step" data-step="03"><b>検証する</b><span>熟練者が誤り、抜け、使える場面、使えない場面を赤入れする。</span></div>
+          <div class="step" data-step="04"><b>共通部品化</b><span>Skill、AGENTS.md、サンプル入力、期待出力をセットで保管する。</span></div>
+        </div>
+      </section>
+    </div>
+
+    <aside class="footer">
+      <div>
+        <b>今日の一歩</b>
+        <p>さがさん・宮前さんの独学資産を起点に、設計書作成Skillとテスト設計Skillのv1を作り、熟練者レビューで育てる。</p>
+      </div>
+      <span class="tag">開発品質を上げる部署</span>
+    </aside>
+  </main>
+</body>
+</html>

@@ -1,0 +1,125 @@
+---
+title: AGENTS.mdでログを貯めて失敗も成功も資産にしよう
+description: AGENTS.mdとlearning-logをつなぎ、毎回同じ説明をしなくて済む状態を作る
+---
+
+import ProgressMap from '../../../components/ProgressMap.astro';
+import SectionHead from '../../../components/training/SectionHead.astro';
+import ImageText from '../../../components/training/ImageText.astro';
+import StepFlow from '../../../components/training/StepFlow.astro';
+import Step from '../../../components/training/Step.astro';
+import Callout from '../../../components/training/Callout.astro';
+
+import agentsHero from '../../../assets/training/agents-md-hero.png';
+
+<ProgressMap current="day1-am" />
+
+<SectionHead no="8" title="AGENTS.mdでログを貯めて失敗も成功も資産にしよう" subtitle="この後の演習から、できたこと・詰まったこと・直し方が自然に残る状態を作る" />
+
+<ImageText
+  imageSrc={agentsHero.src}
+  imageAlt="AGENTS.mdの説明画像"
+  title="AGENTS.mdは毎回同じ説明を省くメモ"
+  caption="まず全体を見る、必要なところだけ修正する、迷ったら確認する"
+>
+  <p>
+    AGENTS.mdはAI向けのREADMEです。プロジェクトの前提、守ってほしいルール、実行してよい確認コマンドを書いておくと、Codexへ毎回同じ説明をしなくて済みます。
+  </p>
+  <p>
+    ただし、活動ログをそのまま詰め込む場所ではありません。失敗や成功の生ログは <code>learning-log/</code> に残し、次回以降も効かせたいルールだけをAGENTS.mdへ昇格します。
+  </p>
+</ImageText>
+
+## 1. AGENTS.mdの概要
+
+AGENTS.mdは、Codexが作業前に読むプロジェクト用の指示ファイルです。標準Markdownで書けるので、特別な書式を覚えるより「何を毎回伝えたいか」を短く書きます。
+
+| 書くもの | 例 |
+|---|---|
+| プロジェクトの前提 | 研修フォルダでは日本語で短く返す |
+| 作業ルール | 削除・上書き・外部送信の前は確認する |
+| 保存先 | 成果物は `outputs/`、記録は `learning-log/` |
+| 確認方法 | 作業後に変更したものと確認したことを報告する |
+
+<Callout variant="tip" title="大事な制約">
+  AGENTS.mdは毎回読まれる前提のファイルです。長くしすぎると本題に使える文脈が減るため、日々の記録は入れず、再利用できるルールだけを書く。
+</Callout>
+
+## 2. AGENTS.md / learning-log / Skill の違い
+
+| 置き場所 | 役割 | 書かないもの |
+|---|---|---|
+| `AGENTS.md` | 毎回守らせたい恒久ルール | 今日だけの感想、長い作業ログ |
+| `learning-log/` | その日の詰まり、成功、直し方 | 毎回読ませたいルールの全文 |
+| Skill | 何度も使う作業手順 | プロジェクト固有の活動記録 |
+
+`learning-log/` は生ログです。`AGENTS.md` は、そこから「次回以降も毎回効かせたい」と判断したルールだけを昇格する場所です。
+
+## 3. SharePoint研修フォルダとログが貯まるAGENTS.mdを作る
+
+SharePoint上に自分用の研修フォルダを作り、そのフォルダをCodexで開きます。
+
+```text
+AI研修_氏名
+```
+
+Codexで研修フォルダを開いたら、下のプロンプトをそのまま貼ります。
+
+```text
+この研修フォルダ用のAGENTS.mdを作ってください。
+
+目的:
+- この後の演習で、できたこと・詰まったこと・直し方が learning-log/ に残る状態にする。
+- 成果物は outputs/ に保存する。
+- AGENTS.md 自体を活動ログにしない。
+
+入れてほしいルール:
+- 日本語で短く答える。
+- 作業をしたら、最後に「変更したもの」「確認したこと」「次にやること」を短く報告する。
+- セッションの区切りごとに learning-log/YYYY-MM-DD.md へ追記する。
+- learning-log には、できたこと・詰まったこと・直し方・使えた指示を書く。
+- 同じミスを2回繰り返したら、再発防止ルールとしてAGENTS.mdへの追記案を出す。
+- outputs/ に成果物を保存したら、保存先を報告する。
+- 削除、上書き、外部送信の前は確認する。
+
+必要なら learning-log/ と outputs/ も作ってください。
+```
+
+AGENTS.mdを作ったら、次の小さい作業で確認します。
+
+```text
+outputs/hello.md を作って、今日の研修でできるようになりたいことを3行で書いてください。
+作業後、AGENTS.mdのルールに従って learning-log/ に記録してください。
+```
+
+<StepFlow>
+  <Step no="1" title="outputsに成果物がある">`outputs/hello.md` が作られている。</Step>
+  <Step no="2" title="learning-logに記録がある">今日の日付のログに、できたこと・直し方が残っている。</Step>
+  <Step no="3" title="最後に報告がある">Codexが変更したもの、確認したこと、次にやることを短く返している。</Step>
+</StepFlow>
+
+## 4. 失敗も成功も資産化する
+
+演習中に同じ失敗が出たら、下のプロンプトを使います。
+
+```text
+learning-log/ を読んで、
+AGENTS.mdに昇格すべき恒久ルールだけを抽出してください。
+
+条件:
+- 一回限りの感想は入れない。
+- 活動記録は入れない。
+- 次回以降も毎回守るべきルールだけにする。
+- 追記案を3つ以内で出してください。
+```
+
+| 良いAGENTS.md | 悪いAGENTS.md |
+|---|---|
+| 成果物は `outputs/` に保存する。 | いい感じに保存する。 |
+| セッションの区切りで `learning-log/YYYY-MM-DD.md` に追記する。 | 毎回ちゃんと覚えておく。 |
+| 削除・上書き・外部送信の前は確認する。 | 安全にやる。 |
+| 同じミスを2回繰り返したらAGENTS.mdへの追記案を出す。 | 完璧に改善する。 |
+
+一言で言うと: `AGENTS.md` は「AIへのお願い」ではなく、「次回から同じ説明をしなくて済む仕組み」です。
+
+次は [Planモードを使う](/day-1/plan-mode/) へ進む。

@@ -1,0 +1,129 @@
+---
+title: オープニング（1）
+description: 2日間のゴールと進め方を共有し、チームと期待を確認する
+---
+
+import ProgressMap from '../../../components/ProgressMap.astro';
+import SectionHead from '../../../components/training/SectionHead.astro';
+import BenefitCards from '../../../components/training/BenefitCards.astro';
+import ImageText from '../../../components/training/ImageText.astro';
+import StepFlow from '../../../components/training/StepFlow.astro';
+import Step from '../../../components/training/Step.astro';
+import Callout from '../../../components/training/Callout.astro';
+import twoDayOverview from '../../../assets/training/2day-overview.png';
+import wajimaProfile from '../../../assets/training/wajima-profile.png';
+import wajimaPrtimes from '../../../assets/training/wajima-prtimes-veho-press.png';
+
+<ProgressMap current="day1-am" />
+
+<SectionHead no="1" title="この2日間のゴール" subtitle="「触ったことがある」で終わらせない" />
+
+この2日間のゴールは1つです。
+
+**明日から、AIを業務で使い倒すこと。**
+
+「研修で触ったことはある」で終わらせません。自分の仕事の中で、当たり前に使える状態まで持っていきます。
+
+<SectionHead no="1" title="そのために必要な2つ" subtitle="スキルと、理解" />
+
+<BenefitCards
+  items={[
+    { title: '① スキルの取得', text: 'Codexを自分の手で操れるようにする。設定・入力・改善の回し方を体に入れる。' },
+    { title: '② AIへの理解', text: '何ができて、何が怖くて、どう付き合うか。過大評価も過小評価もしないための感覚を掴む。' },
+  ]}
+/>
+
+この2つを、**Day1で広げて、Day2で自分の業務に落とす**——それがこの2日間です。
+
+<SectionHead no="1" title="2日後にできるようになること" subtitle="たとえば、こんなこと" />
+
+今日と明日で、たとえばこんなことができるようになります。
+
+<BenefitCards
+  items={[
+    { title: 'スプレッドシートを分析できる', text: '数字の山を渡すと、集計・要約・気になる点を返してくれる。' },
+    { title: '話すだけで企画書ができる', text: '口でしゃべった内容から、共有できる資料（HTML）が現物で出てくる。' },
+    { title: '繰り返す作業を覚えさせられる', text: 'よくやる段取りをAIに覚えさせて、毎回ゼロからやらなくて済む（＝Skill）。' },
+  ]}
+/>
+
+<Callout variant="note" title="覚えなくていい">
+今日は数えきれないくらい色々なことを触ります。一度で全部覚える必要はありません。あとから左メニューと自分の記録（learning-log）で引けるようにしておきます。
+</Callout>
+
+<SectionHead no="1" title="2日間の地図" subtitle="Day1で広げ、Day2で絞る" />
+
+<figure class="training-overview-image">
+  <img src={twoDayOverview.src} alt="2日間の研修全体像" loading="lazy" />
+</figure>
+
+<BenefitCards
+  items={[
+    { title: 'DAY 1：触って広げる', text: 'Codexで何ができるかを一通り触る。最後に、自分の業務フローをAIで可視化して改善する。' },
+    { title: 'DAY 2：自分の業務に落とす', text: '2チームに分かれて、自分の業務に当てた成果物を作る。最後に全員で発表する。' },
+  ]}
+/>
+
+進め方の詳しい地図は [2日間スケジュール](/start/schedule/) と [IPOA：進め方の地図（3）](/day-1/ipoa/) で確認できます。
+
+## チーム発表
+
+この2日間は、2つのチームで動きます。
+
+- デジタル推進グループ
+- 制御開発グループ
+
+Day1はチーム内で2〜3人のバディを組み、先に進めた人が隣を助けます。Day2はこの2チームがそのまま2つの島になります。
+
+<SectionHead no="1" title="講師紹介" subtitle="なぜこの研修をやるか" />
+
+<ImageText
+  imageSrc={wajimaProfile.src}
+  imageAlt="和島自己紹介スライド"
+  title="和島祐生（sento.group 代表）"
+  caption="元アクセンチュア。データ活用・AI導入・業務自動化の支援。"
+>
+  <ul>
+    <li>本来やるべきでない間接業務に、時間を溶かしてきた。だからAIと自動化に強く執着している。</li>
+    <li>この研修も同じ。「完璧に作る」ではなく「出して改善する」を先に宣言します。</li>
+  </ul>
+  <p>
+    <a href="https://www.sento.group/" target="_blank" rel="noopener noreferrer">
+      sento.group — データオペレーションカンパニー
+    </a>
+  </p>
+</ImageText>
+
+<ImageText
+  imageSrc={wajimaPrtimes.src}
+  imageAlt="PR TIMES：VEHO PRESS 資金調達・東南アジア6カ国展開のプレスリリース"
+  title="ベトナム発 VEHO PRESS（2017–2019）"
+  caption="PR TIMES 掲載（2019年7月24日）"
+  reverse
+>
+  <p>
+    ベトナムで日系初のプレスリリース配信サービス「VEHO PRESS」を立ち上げ、東南アジア6カ国展開を推進しました。
+    代表取締役として900万円の増資を実施し、新経営体制を構築した際のプレスリリースです。
+  </p>
+  <p>
+    <a href="https://prtimes.jp/main/html/rd/p/000000031.000027774.html" target="_blank" rel="noopener noreferrer">
+      PR TIMES — VEHO PRESS 資金調達・新経営体制のプレスリリース
+    </a>
+  </p>
+</ImageText>
+
+## 参加者の自己紹介（全員）
+
+<StepFlow>
+  <Step no="1" title="名前・部署">一言で現在の担当を共有する。</Step>
+  <Step no="2" title="2日間でできるようになりたいこと">具体的に1つだけ言語化する。</Step>
+  <Step no="3" title="記録">講師側で一覧化し、Day2の業務棚卸しの入力に回す。</Step>
+</StepFlow>
+
+共有する項目：
+
+- 名前：
+- 部署：
+- 2日間でできるようになりたいこと：
+
+次は [なぜAIを使うか（2）](/day-1/why-ai/) へ進む。

@@ -1,0 +1,881 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AI研修 メンバー当てゲーム</title>
+  <style>
+    :root {
+      --canvas: #fbfbf8;
+      --surface: #ffffff;
+      --ink: #17202a;
+      --muted: #687079;
+      --rule: #d9ddd8;
+      --green: #486b3b;
+      --green-dark: #2f4d28;
+      --accent: #c58b17;
+      --accent-soft: #f7efd9;
+      --green-soft: #edf4ea;
+      --danger: #9c3d2f;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      color: var(--ink);
+      background:
+        linear-gradient(90deg, rgba(47, 77, 40, .05) 1px, transparent 1px) 0 0 / 44px 44px,
+        linear-gradient(rgba(47, 77, 40, .04) 1px, transparent 1px) 0 0 / 44px 44px,
+        var(--canvas);
+      font-family: "Noto Sans JP", "Hiragino Sans", "Yu Gothic", "Meiryo", sans-serif;
+      line-height: 1.78;
+    }
+
+    html,
+    body {
+      overflow-x: hidden;
+    }
+
+    button, input {
+      font: inherit;
+    }
+
+    .app {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: minmax(220px, 15vw) minmax(0, 1fr) minmax(260px, 19vw);
+      gap: 0;
+      min-width: 0;
+    }
+
+    .rail {
+      border-right: 1px solid var(--rule);
+      background: rgba(255, 255, 255, .74);
+      padding: 24px 18px;
+      min-width: 0;
+    }
+
+    .rail h1 {
+      margin: 0 0 18px;
+      color: var(--green-dark);
+      font-family: "Hiragino Mincho ProN", "Yu Mincho", serif;
+      font-size: clamp(25px, 2.2vw, 38px);
+      line-height: 1.15;
+      letter-spacing: 0;
+    }
+
+    .rail p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .status-list {
+      display: grid;
+      gap: 10px;
+      margin-top: 28px;
+      padding-top: 18px;
+      border-top: 1px solid var(--rule);
+    }
+
+    .status-item {
+      display: grid;
+      grid-template-columns: 28px 1fr;
+      gap: 10px;
+      align-items: center;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .status-item b {
+      display: grid;
+      place-items: center;
+      width: 26px;
+      height: 26px;
+      border: 1px solid var(--rule);
+      border-radius: 999px;
+      color: var(--green);
+      background: var(--surface);
+      font-size: 12px;
+    }
+
+    .main {
+      padding: 28px clamp(20px, 4vw, 56px);
+      min-width: 0;
+    }
+
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      padding-bottom: 18px;
+      border-bottom: 3px solid var(--green-dark);
+    }
+
+    .kicker {
+      margin: 0 0 6px;
+      color: var(--accent);
+      font-weight: 800;
+      letter-spacing: .08em;
+      font-size: 13px;
+    }
+
+    .topbar h2 {
+      margin: 0;
+      color: var(--green-dark);
+      font-size: clamp(26px, 3.2vw, 44px);
+      line-height: 1.15;
+      letter-spacing: 0;
+    }
+
+    .round {
+      min-width: 150px;
+      padding: 10px 14px;
+      border: 1px solid var(--rule);
+      background: var(--surface);
+      text-align: right;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .round strong {
+      display: block;
+      color: var(--green-dark);
+      font-size: 24px;
+      line-height: 1.2;
+    }
+
+    .game-board {
+      display: grid;
+      grid-template-columns: minmax(0, 1.05fr) minmax(300px, .95fr);
+      gap: 22px;
+      margin-top: 22px;
+      align-items: start;
+    }
+
+    .question-panel,
+    .guess-panel,
+    .answer-log,
+    .side {
+      background: var(--surface);
+      border: 1px solid var(--rule);
+    }
+
+    .question-panel {
+      padding: clamp(22px, 3vw, 34px);
+      min-height: 430px;
+      min-width: 0;
+      display: grid;
+      align-content: space-between;
+      gap: 26px;
+    }
+
+    .question-meta {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      align-items: center;
+      margin-bottom: 18px;
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      min-height: 30px;
+      padding: 4px 10px;
+      border: 1px solid var(--rule);
+      background: var(--canvas);
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .pill.current {
+      border-color: #dfc27a;
+      background: var(--accent-soft);
+      color: #76520c;
+    }
+
+    .question {
+      margin: 0;
+      color: var(--ink);
+      font-size: clamp(27px, 3.6vw, 48px);
+      line-height: 1.28;
+      font-weight: 900;
+      letter-spacing: 0;
+      overflow-wrap: anywhere;
+    }
+
+    .hint {
+      margin: 18px 0 0;
+      color: var(--muted);
+      font-size: 15px;
+    }
+
+    .actions {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+    }
+
+    .answer-btn,
+    .secondary-btn,
+    .person-btn {
+      border: 1px solid var(--rule);
+      border-radius: 4px;
+      background: var(--surface);
+      color: var(--ink);
+      cursor: pointer;
+      transition: background .15s ease, border-color .15s ease, color .15s ease;
+    }
+
+    .answer-btn {
+      min-height: 64px;
+      font-size: 18px;
+      font-weight: 900;
+    }
+
+    .answer-btn.yes {
+      background: var(--green-dark);
+      border-color: var(--green-dark);
+      color: white;
+    }
+
+    .answer-btn:hover,
+    .answer-btn:focus-visible,
+    .secondary-btn:hover,
+    .secondary-btn:focus-visible,
+    .person-btn:hover,
+    .person-btn:focus-visible {
+      outline: 2px solid var(--green);
+      outline-offset: 2px;
+      background: var(--green-soft);
+    }
+
+    .answer-btn.yes:hover,
+    .answer-btn.yes:focus-visible {
+      background: var(--green);
+      color: white;
+    }
+
+    .guess-panel {
+      padding: 20px;
+    }
+
+    .guess-title {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      align-items: baseline;
+      margin-bottom: 14px;
+    }
+
+    .guess-title h3,
+    .answer-log h3,
+    .side h3 {
+      margin: 0;
+      color: var(--green-dark);
+      font-size: 22px;
+      line-height: 1.25;
+    }
+
+    .confidence {
+      color: var(--accent);
+      font-weight: 900;
+      font-size: 14px;
+      white-space: nowrap;
+    }
+
+    .top-candidate {
+      padding: 20px;
+      background: linear-gradient(90deg, var(--green-soft), #fff);
+      border-left: 5px solid var(--green);
+    }
+
+    .top-candidate .name {
+      display: block;
+      color: var(--green-dark);
+      font-size: clamp(28px, 3vw, 42px);
+      font-weight: 900;
+      line-height: 1.1;
+    }
+
+    .top-candidate .team {
+      display: block;
+      margin-top: 8px;
+      color: var(--muted);
+      font-size: 14px;
+      font-weight: 800;
+    }
+
+    .reason-list {
+      display: grid;
+      gap: 8px;
+      margin: 16px 0 0;
+      padding: 0;
+      list-style: none;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .reason-list li {
+      padding-left: 16px;
+      border-left: 2px solid var(--rule);
+    }
+
+    .result-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 18px;
+    }
+
+    .secondary-btn {
+      min-height: 40px;
+      padding: 7px 12px;
+      font-weight: 800;
+    }
+
+    .secondary-btn.primary {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: white;
+    }
+
+    .candidate-list {
+      display: grid;
+      gap: 8px;
+      margin-top: 16px;
+    }
+
+    .person-btn {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 12px;
+      align-items: center;
+      padding: 9px 10px;
+      text-align: left;
+      font-size: 14px;
+    }
+
+    .person-btn b {
+      color: var(--green-dark);
+    }
+
+    .person-btn span {
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .answer-log {
+      margin-top: 22px;
+      padding: 18px 20px;
+    }
+
+    .log-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 12px;
+    }
+
+    .log-chip {
+      padding: 5px 9px;
+      border: 1px solid var(--rule);
+      background: var(--canvas);
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .side {
+      border-left: 1px solid var(--rule);
+      border-right: 0;
+      border-top: 0;
+      border-bottom: 0;
+      background: rgba(255,255,255,.82);
+      padding: 24px 18px;
+      overflow: auto;
+      min-width: 0;
+    }
+
+    .side-section + .side-section {
+      margin-top: 26px;
+      padding-top: 20px;
+      border-top: 1px solid var(--rule);
+    }
+
+    .mini-list {
+      display: grid;
+      gap: 9px;
+      margin-top: 14px;
+    }
+
+    .mini-person {
+      display: grid;
+      gap: 2px;
+      padding: 8px 0;
+      border-bottom: 1px solid rgba(217, 221, 216, .7);
+      font-size: 13px;
+    }
+
+    .mini-person b {
+      color: var(--green-dark);
+    }
+
+    .mini-person span {
+      color: var(--muted);
+      line-height: 1.55;
+    }
+
+    .progress {
+      width: 100%;
+      height: 10px;
+      appearance: none;
+      margin-top: 16px;
+    }
+
+    .progress::-webkit-progress-bar {
+      background: #eef0ec;
+      border-radius: 999px;
+    }
+
+    .progress::-webkit-progress-value {
+      background: var(--accent);
+      border-radius: 999px;
+    }
+
+    .hidden { display: none !important; }
+
+    @media (max-width: 1080px) {
+      .app {
+        grid-template-columns: 1fr;
+      }
+
+      .rail,
+      .side {
+        border: 0;
+      }
+
+      .rail {
+        display: grid;
+        grid-template-columns: 1fr auto;
+        gap: 18px;
+        align-items: end;
+      }
+
+      .status-list {
+        margin-top: 0;
+        padding-top: 0;
+        border-top: 0;
+      }
+
+      .game-board {
+        grid-template-columns: 1fr;
+      }
+
+      .question-panel,
+      .guess-panel {
+        min-width: 0;
+      }
+
+      .side {
+        padding-top: 0;
+      }
+    }
+
+    @media (max-width: 680px) {
+      .rail {
+        display: block;
+        padding: 20px 16px;
+      }
+
+      .status-list {
+        margin-top: 18px;
+        padding-top: 14px;
+        border-top: 1px solid var(--rule);
+      }
+
+      .main {
+        padding: 20px 16px;
+      }
+
+      .topbar {
+        align-items: stretch;
+        flex-direction: column;
+      }
+
+      .round {
+        text-align: left;
+      }
+
+      .actions {
+        grid-template-columns: 1fr;
+      }
+
+      .question {
+        font-size: 27px;
+        word-break: break-all;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      * {
+        animation: none !important;
+        transition: none !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="app">
+    <aside class="rail">
+      <div>
+        <p class="kicker">MEMBER GUESS</p>
+        <h1>AI研修<br>メンバー当て</h1>
+        <p>頭の中で1人を思い浮かべてください。質問に答えると、該当しそうな人を絞ります。</p>
+      </div>
+      <div class="status-list" aria-label="遊び方">
+        <div class="status-item"><b>1</b><span>1人を決める</span></div>
+        <div class="status-item"><b>2</b><span>質問に答える</span></div>
+        <div class="status-item"><b>3</b><span>候補を確認する</span></div>
+      </div>
+    </aside>
+
+    <main class="main">
+      <header class="topbar">
+        <div>
+          <p class="kicker">質問に回答しながら、その人を当てる</p>
+          <h2>どのメンバーでしょう？</h2>
+        </div>
+        <div class="round" aria-live="polite">
+          質問数
+          <strong id="roundText">0 / 8</strong>
+          <progress id="progress" class="progress" value="0" max="8"></progress>
+        </div>
+      </header>
+
+      <div class="game-board">
+        <section class="question-panel" aria-label="質問">
+          <div>
+            <div class="question-meta">
+              <span class="pill current" id="questionType">開始</span>
+              <span class="pill" id="remainingText">候補 15人</span>
+            </div>
+            <p class="question" id="questionText">その人は、デジタル推進グループのメンバーですか？</p>
+            <p class="hint" id="questionHint">わからない場合は「不明」で進められます。回答が少し曖昧でも、最後に候補が残ります。</p>
+          </div>
+          <div class="actions">
+            <button class="answer-btn yes" type="button" data-answer="yes">はい</button>
+            <button class="answer-btn" type="button" data-answer="no">いいえ</button>
+            <button class="answer-btn" type="button" data-answer="unknown">不明</button>
+          </div>
+        </section>
+
+        <section class="guess-panel" aria-label="推定結果">
+          <div class="guess-title">
+            <h3>現在の推定</h3>
+            <span class="confidence" id="confidenceText">まだ探索中</span>
+          </div>
+          <div class="top-candidate">
+            <span class="name" id="candidateName">候補を絞り込み中</span>
+            <span class="team" id="candidateTeam">質問に答えるとここに最有力候補が出ます</span>
+            <ul class="reason-list" id="reasonList">
+              <li>部署、業務、AI利用状況、関心テーマから推定します。</li>
+            </ul>
+          </div>
+          <div class="result-actions">
+            <button class="secondary-btn primary" type="button" id="guessNow">今の候補で回答</button>
+            <button class="secondary-btn" type="button" id="restart">最初から</button>
+          </div>
+          <div class="candidate-list" id="candidateList" aria-label="候補一覧"></div>
+        </section>
+      </div>
+
+      <section class="answer-log" aria-label="回答履歴">
+        <h3>回答履歴</h3>
+        <div class="log-list" id="logList">
+          <span class="log-chip">まだ回答はありません</span>
+        </div>
+      </section>
+    </main>
+
+    <aside class="side">
+      <section class="side-section">
+        <h3>対象メンバー</h3>
+        <div class="mini-list" id="memberList"></div>
+      </section>
+      <section class="side-section">
+        <h3>質問の軸</h3>
+        <div class="mini-list">
+          <div class="mini-person"><b>部署</b><span>デジタル推進、制御開発、研究所</span></div>
+          <div class="mini-person"><b>業務</b><span>損益、FAQ、ガバナンス、設計、テスト、レビュー、データ抽出</span></div>
+          <div class="mini-person"><b>AI利用</b><span>Copilot、GPT、Codex、Skill、Kiroなど</span></div>
+        </div>
+      </section>
+    </aside>
+  </div>
+
+  <script>
+    const members = [
+      { name: "ひでさん", team: "デジタル推進グループ", tags: ["digital", "company", "profit", "copilot", "coding", "slides", "excel", "codex-future"], notes: ["全社活用を担当", "製品別損益", "Copilotでコーディングや資料作成"] },
+      { name: "川崎さん", team: "デジタル推進グループ", tags: ["digital", "faq", "manual", "gpt", "skill-interest"], notes: ["FAQや取説の内容をGPTで回答出力", "Skillをもっと使いたい"] },
+      { name: "かまやさん", team: "デジタル推進グループ", tags: ["digital", "profit", "workflow", "copilot", "coding", "test-items", "codex-beginner", "slides"], notes: ["機種別損益", "ワークフロー保守", "Codex初心者"] },
+      { name: "古谷さん", team: "デジタル推進グループ", tags: ["digital", "global-it", "governance", "copilot", "coding", "codex-future", "efficiency"], notes: ["海外含むグローバルITとガバナンス", "Codexはこれから"] },
+      { name: "北島さん", team: "デジタル推進グループ", tags: ["digital", "security", "rulemaking", "cloud-guideline", "aws", "global", "codex-future"], notes: ["情報セキュリティ推進", "クラウド/AWSガイドライン作成"] },
+      { name: "リュウさん", team: "デジタル推進グループ", tags: ["digital", "dx", "automation", "generative-ai", "nocria", "support"], notes: ["ノクリアのAI機能", "生成AI活用と自動化ツール支援"] },
+      { name: "高橋さん", team: "制御開発", tags: ["control", "outdoor-unit", "design-doc", "test-design"], notes: ["室外機中心", "設計書やテスト設計をAIに任せている"] },
+      { name: "上妻さん", team: "制御開発", tags: ["control", "network-adapter", "design", "delegate-work"], notes: ["ネットワークアダプタ", "自分の業務をもっと代わりにやってほしい"] },
+      { name: "つばいさん", team: "制御開発", tags: ["control", "test-design", "codex", "token-design", "regression"], notes: ["テスト設計でCodex", "トークン設計やデグレを何とかしたい"] },
+      { name: "さがさん", team: "制御開発", tags: ["control", "outdoor-unit", "ai-promotion", "codex", "vscode", "skill", "agents", "self-study"], notes: ["AI活用推進", "VS CodeからCodex", "SkillやAGENTS.mdを独学"] },
+      { name: "宮前さん", team: "制御開発", tags: ["control", "firmware", "advanced-development", "self-study", "systematic"], notes: ["ファーム先行開発", "独学済みで体系的に学びたい"] },
+      { name: "うすいさん", team: "制御開発", tags: ["control", "central-management", "code-summary", "review"], notes: ["集中管理機器", "他者コードの概要確認やレビュー"] },
+      { name: "山口さん", team: "制御開発", tags: ["control", "electrical-noise", "simulation", "technical-discussion", "data-extraction", "data-shaping"], notes: ["電気ノイズのシミュレーション", "入力ばらつきと出力整形"] },
+      { name: "石原さん", team: "制御開発", tags: ["control", "circuit-design", "parts-data", "data-extraction", "skill-create"], notes: ["室内室外機の基板回路設計", "部品データ抽出", "正しいSkill作成"] },
+      { name: "高田さん", team: "ゼネラル研究所", tags: ["research", "air-conditioning", "coding", "gpt", "kiro"], notes: ["空調機能", "生成AIやKiroをコーディングで利用"] }
+    ];
+
+    const questions = [
+      { id: "digital", type: "部署", text: "その人は、デジタル推進グループのメンバーですか？", hint: "全社AI活用、FAQ、ガバナンス、DX支援寄りなら「はい」。" },
+      { id: "control", type: "部署", text: "その人は、制御開発のメンバーですか？", hint: "室外機、ファーム、回路、テスト、レビュー寄りなら「はい」。" },
+      { id: "profit", type: "業務", text: "製品別・機種別損益に関わっていますか？", hint: "損益資料、Excel、機種別損益の話が出ていた人です。" },
+      { id: "workflow", type: "業務", text: "ワークフローの保守にも関わっていますか？", hint: "機種別損益とあわせて、ワークフロー保守の話が出ていた人です。" },
+      { id: "faq", type: "業務", text: "FAQや取説の回答作成が主なテーマですか？", hint: "GPTでFAQや取説から回答を出す話です。" },
+      { id: "security", type: "業務", text: "セキュリティやクラウドガイドラインに関わっていますか？", hint: "AWSガイドライン、情報セキュリティ、海外拠点とのやりとりが手がかりです。" },
+      { id: "global-it", type: "業務", text: "グローバルITやガバナンスを担当していますか？", hint: "海外含むIT・ガバナンスの話が出ていた人です。" },
+      { id: "dx", type: "業務", text: "生成AI活用や自動化ツールのサポートが担当領域ですか？", hint: "DX推進、ノクリアAI機能、自動化ツールが手がかりです。" },
+      { id: "outdoor-unit", type: "開発", text: "室外機に関わる業務が中心ですか？", hint: "室外機中心、または室外機関連の開発・推進に触れていました。" },
+      { id: "ai-promotion", type: "AI推進", text: "柴田さんと一緒にAI活用推進を進めていますか？", hint: "制御開発側でAI活用推進を進めている人です。" },
+      { id: "vscode", type: "ツール", text: "VS CodeからCodexを使っている話が出ていましたか？", hint: "Codex、VS Code、1か月前から使い始めた、が手がかりです。" },
+      { id: "network-adapter", type: "開発", text: "ネットワークアダプタを担当していますか？", hint: "ネットワークアダプタの設計に触れていた人です。" },
+      { id: "firmware", type: "開発", text: "ファームの先行開発に関わっていますか？", hint: "ファーム先行開発、体系的に学びたい、という話です。" },
+      { id: "circuit-design", type: "技術", text: "基板の回路設計や部品データ抽出に関わっていますか？", hint: "室内室外機の基板、部品データ、Skill作成が手がかりです。" },
+      { id: "electrical-noise", type: "技術", text: "電気ノイズのシミュレーションが業務に出てきますか？", hint: "技術壁打ち、データ抽出、出力整形も手がかりです。" },
+      { id: "central-management", type: "開発", text: "集中管理機器を担当していますか？", hint: "他者コードの概要確認・レビューにもAIを使っています。" },
+      { id: "test-design", type: "AI活用", text: "AIでテスト設計を進めたい、または既に使っていますか？", hint: "設計書、テスト設計、デグレ確認の話です。" },
+      { id: "review", type: "AI活用", text: "他の人が書いたコードの概要確認やレビューにAIを使っていますか？", hint: "コードの読み解き・レビュー効率化が主テーマです。" },
+      { id: "codex", type: "ツール", text: "Codexをすでに使っていますか？", hint: "VS CodeからCodex、テスト設計でCodexなどの話が出ていました。" },
+      { id: "codex-beginner", type: "ツール", text: "Codexは初心者で、これから使えるようになりたい人ですか？", hint: "Codexはこれから、または初心者という自己紹介です。" },
+      { id: "skill", type: "ツール", text: "SkillやAGENTS.mdに関心がありますか？", hint: "Skillをもっと使いたい、正しいSkill作成、AGENTS.md独学など。" },
+      { id: "copilot", type: "ツール", text: "Copilotでコーディングや資料作成をしていますか？", hint: "ExcelのCopilot、資料作成、プログラム作成などが手がかりです。" },
+      { id: "gpt", type: "ツール", text: "GPTを使って回答作成やコーディングをしていますか？", hint: "FAQ回答やGPTでのコーディング利用です。" },
+      { id: "kiro", type: "ツール", text: "IDEでKiroを使っていますか？", hint: "研究所の自己紹介に出てきた手がかりです。" }
+    ];
+
+    const state = {
+      scores: new Map(),
+      asked: [],
+      answers: [],
+      current: null,
+      done: false
+    };
+
+    const maxQuestions = 9;
+    const els = {
+      questionType: document.getElementById("questionType"),
+      remainingText: document.getElementById("remainingText"),
+      questionText: document.getElementById("questionText"),
+      questionHint: document.getElementById("questionHint"),
+      roundText: document.getElementById("roundText"),
+      progress: document.getElementById("progress"),
+      candidateName: document.getElementById("candidateName"),
+      candidateTeam: document.getElementById("candidateTeam"),
+      reasonList: document.getElementById("reasonList"),
+      confidenceText: document.getElementById("confidenceText"),
+      candidateList: document.getElementById("candidateList"),
+      logList: document.getElementById("logList"),
+      memberList: document.getElementById("memberList"),
+      guessNow: document.getElementById("guessNow"),
+      restart: document.getElementById("restart")
+    };
+
+    function resetGame() {
+      state.scores = new Map(members.map(member => [member.name, 0]));
+      state.asked = [];
+      state.answers = [];
+      state.current = null;
+      state.done = false;
+      chooseNextQuestion();
+      render();
+    }
+
+    function answerCurrent(answer) {
+      if (!state.current || state.done) return;
+      const q = state.current;
+      state.asked.push(q.id);
+      state.answers.push({ question: q.text, type: q.type, answer });
+
+      if (answer !== "unknown") {
+        for (const member of members) {
+          const hasTag = member.tags.includes(q.id);
+          let delta = 0;
+          if (answer === "yes") delta = hasTag ? 3 : -2;
+          if (answer === "no") delta = hasTag ? -3 : 1;
+          state.scores.set(member.name, state.scores.get(member.name) + delta);
+        }
+      }
+
+      if (shouldFinish()) {
+        state.done = true;
+        state.current = null;
+      } else {
+        chooseNextQuestion();
+      }
+      render();
+    }
+
+    function shouldFinish() {
+      const ranked = getRanked();
+      if (state.asked.length >= maxQuestions) return true;
+      if (state.asked.length >= 4 && ranked[0].score - ranked[1].score >= 8) return true;
+      return false;
+    }
+
+    function chooseNextQuestion() {
+      const remaining = questions.filter(q => !state.asked.includes(q.id));
+      if (!remaining.length) {
+        state.done = true;
+        state.current = null;
+        return;
+      }
+
+      const ranked = getRanked().slice(0, 8);
+      let best = remaining[0];
+      let bestValue = -Infinity;
+
+      for (const q of remaining) {
+        const yesCount = ranked.filter(item => item.member.tags.includes(q.id)).length;
+        const balance = Math.min(yesCount, ranked.length - yesCount);
+        const specificity = yesCount === 1 ? 2 : 0;
+        const earlyDept = state.asked.length < 2 && (q.id === "digital" || q.id === "control") ? 3 : 0;
+        const value = balance * 2 + specificity + earlyDept;
+        if (value > bestValue) {
+          bestValue = value;
+          best = q;
+        }
+      }
+
+      state.current = best;
+    }
+
+    function getRanked() {
+      return members
+        .map(member => ({ member, score: state.scores.get(member.name) || 0 }))
+        .sort((a, b) => b.score - a.score || a.member.name.localeCompare(b.member.name, "ja"));
+    }
+
+    function answerLabel(answer) {
+      if (answer === "yes") return "はい";
+      if (answer === "no") return "いいえ";
+      return "不明";
+    }
+
+    function render() {
+      const ranked = getRanked();
+      const top = ranked[0];
+      const second = ranked[1];
+      const possible = ranked.filter(item => item.score >= top.score - 5);
+      const round = state.asked.length;
+
+      els.roundText.textContent = `${round} / ${maxQuestions}`;
+      els.progress.value = round;
+      els.remainingText.textContent = `候補 ${possible.length}人`;
+
+      if (state.done) {
+        els.questionType.textContent = "回答";
+        els.questionText.textContent = `たぶん、${top.member.name}です。`;
+        els.questionHint.textContent = "違っていたら、候補一覧から近い人を見てください。もう一度遊ぶ場合は「最初から」。";
+        document.querySelectorAll(".answer-btn").forEach(button => button.disabled = true);
+      } else {
+        els.questionType.textContent = state.current.type;
+        els.questionText.textContent = state.current.text;
+        els.questionHint.textContent = state.current.hint;
+        document.querySelectorAll(".answer-btn").forEach(button => button.disabled = false);
+      }
+
+      els.candidateName.textContent = state.asked.length ? top.member.name : "候補を絞り込み中";
+      els.candidateTeam.textContent = state.asked.length ? top.member.team : "質問に答えるとここに最有力候補が出ます";
+
+      const gap = second ? top.score - second.score : top.score;
+      els.confidenceText.textContent = state.done ? "推定完了" : gap >= 6 ? "かなり濃い" : state.asked.length >= 3 ? "候補あり" : "まだ探索中";
+
+      els.reasonList.innerHTML = "";
+      const reasons = state.asked.length ? top.member.notes : ["部署、業務、AI利用状況、関心テーマから推定します。"];
+      for (const reason of reasons) {
+        const li = document.createElement("li");
+        li.textContent = reason;
+        els.reasonList.appendChild(li);
+      }
+
+      els.candidateList.innerHTML = "";
+      for (const item of ranked.slice(0, 6)) {
+        const button = document.createElement("button");
+        button.type = "button";
+        button.className = "person-btn";
+        button.innerHTML = `<b>${item.member.name}</b><span>${item.member.team} / ${item.score}点</span>`;
+        button.addEventListener("click", () => showManualResult(item.member));
+        els.candidateList.appendChild(button);
+      }
+
+      els.logList.innerHTML = "";
+      if (!state.answers.length) {
+        const chip = document.createElement("span");
+        chip.className = "log-chip";
+        chip.textContent = "まだ回答はありません";
+        els.logList.appendChild(chip);
+      } else {
+        for (const item of state.answers) {
+          const chip = document.createElement("span");
+          chip.className = "log-chip";
+          chip.textContent = `${item.type}: ${answerLabel(item.answer)}`;
+          els.logList.appendChild(chip);
+        }
+      }
+    }
+
+    function showManualResult(member) {
+      state.done = true;
+      state.current = null;
+      els.questionType.textContent = "選択";
+      els.questionText.textContent = `${member.name}を表示しています。`;
+      els.questionHint.textContent = "候補一覧から選んだメンバーです。";
+      els.candidateName.textContent = member.name;
+      els.candidateTeam.textContent = member.team;
+      els.confidenceText.textContent = "手動確認";
+      els.reasonList.innerHTML = "";
+      for (const reason of member.notes) {
+        const li = document.createElement("li");
+        li.textContent = reason;
+        els.reasonList.appendChild(li);
+      }
+      document.querySelectorAll(".answer-btn").forEach(button => button.disabled = true);
+    }
+
+    function renderMemberList() {
+      els.memberList.innerHTML = "";
+      for (const member of members) {
+        const item = document.createElement("div");
+        item.className = "mini-person";
+        item.innerHTML = `<b>${member.name}</b><span>${member.team}</span>`;
+        els.memberList.appendChild(item);
+      }
+    }
+
+    document.querySelectorAll(".answer-btn").forEach(button => {
+      button.addEventListener("click", () => answerCurrent(button.dataset.answer));
+    });
+
+    els.guessNow.addEventListener("click", () => {
+      state.done = true;
+      state.current = null;
+      render();
+    });
+
+    els.restart.addEventListener("click", resetGame);
+
+    renderMemberList();
+    resetGame();
+  </script>
+<script>setTimeout(()=>{const rows=[...document.querySelectorAll('body, .app, .rail, .main, .topbar, .game-board, .question-panel, .question, .guess-panel, .side')].map(el=>({sel: el.tagName.toLowerCase()+'.'+el.className, w: el.scrollWidth, cw: el.clientWidth, left: el.getBoundingClientRect().left, right: el.getBoundingClientRect().right})); document.body.innerHTML='<pre>'+JSON.stringify({vw:innerWidth, doc:document.documentElement.scrollWidth, body:document.body.scrollWidth, rows}, null, 2)+'</pre>';}, 50)</script></body>
+</html>

@@ -1,0 +1,64 @@
+---
+title: なぜAIを使うか（2）
+description: 道具を使いこなす感覚と、チャットとの違い（手も動くAI）
+---
+
+import ProgressMap from '../../../components/ProgressMap.astro';
+import SectionHead from '../../../components/training/SectionHead.astro';
+import BenefitCards from '../../../components/training/BenefitCards.astro';
+import Callout from '../../../components/training/Callout.astro';
+import StepFlow from '../../../components/training/StepFlow.astro';
+import Step from '../../../components/training/Step.astro';
+import snsPersonalityImage from '../../../assets/training/z-sozoken-sns-personality.jpg';
+
+<ProgressMap current="day1-am" />
+
+<SectionHead no="2" title="なぜAIを使うか" subtitle="拡張感覚と、チャットとの違い" />
+
+<Callout variant="note" title="ここで問題です">
+  なぜ女子高生はSNSを使いこなせるのでしょうか？
+</Callout>
+
+<figure class="training-overview-image">
+  <img src={snsPersonalityImage.src} alt="SNSアカウント数と人格の使い分けに関する調査図版" loading="lazy" />
+  <figcaption>
+    Z-SOZOKEN「Z世代のアイコン人格についての実態調査」より。
+    <a href="https://fiom-llc.studio.site/news/CLrSKLSq" target="_blank" rel="noopener noreferrer">
+      調査記事を読む
+    </a>
+  </figcaption>
+</figure>
+
+<StepFlow>
+  <Step no="1" title="1分考える">SNSを「自然に使える」状態には何があるかを考える。</Step>
+  <Step no="2" title="隣と軽く話す">機能を覚えているのか、使う場面が多いのか、場面で使い分けているのか。</Step>
+  <Step no="3" title="小話で確かめる">機能の暗記ではなく、使う場面の多さと使い分けが「自然に使える」をつくる。</Step>
+</StepFlow>
+
+道具は、使いこなすほど「道具を使っている感覚」が消えます。自転車や車の運転と同じで、慣れると意識から消えて、身体の延長になる。これが **拡張感覚** です。AIも同じで、操れるようになると思考の延長になります。
+
+## チャットでよくない？ — 口だけのAIと、手も動くAI
+
+「ChatGPTみたいなチャットでよくない？」と思うかもしれません。半分はその通りで、調べ物や下書きの多くはチャットで足ります。
+
+違いは **入力のしやすさ** ではなく **出力と実行** にあります。
+
+<BenefitCards
+  items={[
+    { title: 'チャット＝相談相手（口だけ）', text: '会話の中に答えが出る。最後は自分がExcelを開いて打ち込む。' },
+    { title: 'コーディングエージェント＝部下（手も動く）', text: 'Excelやスライドそのものを作ってフォルダに置く。資料や図が現物で残る。' },
+  ]}
+/>
+
+- **現物が残る**：会話のテキストではなく、ファイルが手元に残る。
+- **資料を横断できる**：フォルダ丸ごと（議事録・過去フォーマット）を読んで作業する。
+- **外部ツールに手が伸びる**：Box / SharePoint / Excel に取りに行く・書きに行く。
+- **段取りを再利用できる**：よく使う手順を覚えさせる（＝Skill）。
+
+<Callout variant="tip" title="「コードが書ける」の意味">
+  非エンジニアにとっての価値は、コードを書くこと自体ではありません。Excelの集計もHTMLの可視化もデータ整形も、すべてコードの上で動いています。コードという万能の手を持っているから、何でも作れて何でも触れる。だから「最強のAI」と言えます。
+</Callout>
+
+チャットが詰まるのは「現物のファイルが欲しい」「大量の資料を横断したい」「同じ作業を繰り返す」の3場面。今日の午後は、まさにこの場面を自分の手で体験します。
+
+次は [IPOA：進め方の地図（3）](/day-1/ipoa/) へ進む。

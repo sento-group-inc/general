@@ -1,0 +1,77 @@
+---
+title: プラグインを使ってみよう
+description: Box / SharePoint / Excel / Outlook / Teams を接続し、業務資料をInputにする
+---
+
+import ProgressMap from '../../../components/ProgressMap.astro';
+import SectionHead from '../../../components/training/SectionHead.astro';
+import ImageText from '../../../components/training/ImageText.astro';
+import StepFlow from '../../../components/training/StepFlow.astro';
+import Step from '../../../components/training/Step.astro';
+import Callout from '../../../components/training/Callout.astro';
+
+import pluginsShot from '../../../assets/training/codex-plugins.png';
+
+<ProgressMap current="day1-pm" />
+
+<SectionHead no="9" title="プラグインを使ってみよう" subtitle="Box / SharePoint / Excel / Outlook / Teams を、業務資料の入口として扱う" />
+
+## プラグインとは
+
+プラグインは、Codexに追加の作業手順、外部アプリ接続、MCPサーバーをまとめて追加する仕組みです。接続すると、BoxやSharePoint上の資料、Excel、Outlook、Teamsの情報をInputとして扱いやすくなります。
+
+<ImageText
+  imageSrc={pluginsShot.src}
+  imageAlt="Codexプラグイン一覧"
+  title="プラグイン一覧"
+  caption="接続先ごとに有効化とサインインを確認"
+>
+  <ul>
+    <li>Box: 社内資料や共有フォルダをInputにする</li>
+    <li>SharePoint: 研修フォルダと成果物を扱う</li>
+    <li>Excel: 表や手順表を読み、業務フローの材料にする</li>
+    <li>Outlook: メールや予定を分類し、次の作業を抜き出す</li>
+    <li>Teams: 会議メモやチャネルの文脈を確認する</li>
+  </ul>
+</ImageText>
+
+## 接続して最初にやること
+
+<StepFlow>
+  <Step no="1" title="プラグイン一覧を開く">Codex左メニューからプラグイン一覧を開く。</Step>
+  <Step no="2" title="Boxを確認">表示されていれば接続する。表示されない場合は講師に伝える。</Step>
+  <Step no="3" title="Microsoft系を確認">SharePoint / Excel / Outlook / Teams の接続状態を見る。</Step>
+  <Step no="4" title="読み取り中心で始める">一覧化、要約、分類から始める。書き込みや削除はしない。</Step>
+  <Step no="5" title="研修フォルダを指す">事前に作った `AI研修_氏名` フォルダをCodexに伝える。</Step>
+</StepFlow>
+
+```text
+SharePointの私の研修フォルダ「AI研修_氏名」を確認してください。
+まず中にあるファイル名だけを一覧にしてください。中身の編集はまだしないでください。
+```
+
+## 業務Inputとして使う
+
+| 接続先 | 最初に試すこと |
+|---|---|
+| Box | 業務マニュアルや共有資料の一覧化 |
+| SharePoint | 研修フォルダ内の成果物と資料確認 |
+| Excel | 手順表から「誰が・いつ・何をするか」を抽出 |
+| Outlook | メール本文から依頼事項と期限を抽出 |
+| Teams | 会議メモや投稿から決定事項を整理 |
+
+```text
+このExcel手順表を読んで、業務フローの主要ステップを5行以内で抜き出してください。
+列名やセルの意味が不明なところは [不明] と書いてください。
+```
+
+```text
+このOutlookメールを読んで、依頼事項、期限、返信前に確認すべきことを整理してください。
+外部送信や返信文の送信はまだしないでください。
+```
+
+<Callout variant="warn" title="権限の扱い">
+  接続できることと、何をしてよいかは別。外部サービスのアクセス範囲は、接続時の許可、管理者設定、サービス側の権限に従う。削除・送信・上書きは講師指示がある時だけ行う。
+</Callout>
+
+次は [入力方法：音声・写真・資料（9）](/day-1/input-methods/) へ進む。その後、必要に応じて [crawl4aiでWebページをInputにする](/day-1/crawl4ai/) も触る。

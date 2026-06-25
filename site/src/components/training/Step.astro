@@ -1,0 +1,17 @@
+---
+interface Props {
+  no: string | number;
+  title: string;
+  id?: string;
+}
+
+const { no, title, id } = Astro.props;
+---
+
+<li class="training-step-item" id={id}>
+  <div class="training-step-no">{no}</div>
+  <div>
+    <strong>{title}</strong>
+    <div class="training-step-body"><slot /></div>
+  </div>
+</li>

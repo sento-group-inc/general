@@ -1,0 +1,22 @@
+---
+interface Props {
+  imageSrc: string;
+  imageAlt: string;
+  title: string;
+  caption?: string;
+  reverse?: boolean;
+}
+
+const { imageSrc, imageAlt, title, caption, reverse = false } = Astro.props;
+---
+
+<section class={`training-image-text ${reverse ? 'is-reverse' : ''}`}>
+  <figure>
+    <img src={imageSrc} alt={imageAlt} loading="lazy" />
+    {caption && <figcaption>{caption}</figcaption>}
+  </figure>
+  <div>
+    <h3>{title}</h3>
+    <div><slot /></div>
+  </div>
+</section>

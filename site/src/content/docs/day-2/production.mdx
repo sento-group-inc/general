@@ -1,0 +1,61 @@
+---
+title: 成果物を作る
+description: 実務の成果物をCodexで制作する
+---
+
+import ProgressMap from '../../../components/ProgressMap.astro';
+import StepFlow from '../../../components/training/StepFlow.astro';
+import Step from '../../../components/training/Step.astro';
+import Callout from '../../../components/training/Callout.astro';
+
+<ProgressMap current="day2" />
+
+## 制作方針
+
+- まずv1を出す
+- フィードバックを受けてv2にする
+- 完璧化より提出優先
+
+## 型を作ってからv1へ
+
+制作テーマに合わせて、Codexに成果物の型を作らせます。固定テンプレートを選ぶのではなく、読み手・目的・参照入力から、その場のv1を組み立てます。
+
+```text
+以下の条件で、成果物v1の型を作ってください。
+
+目的：
+読み手：
+使えるInput：
+制約：
+
+まず見出し構成を出し、その後 outputs/ に保存する本文v1を作ってください。
+未決事項は [未決] と書いてください。
+```
+
+## v1提出→レビュー→v2
+
+<StepFlow>
+  <Step no="1" title="v1を出す">目的を1文で固定し、必要入力を足してCodexに出す。</Step>
+  <Step no="2" title="レビューを受ける">同じグループの1人に見せ、「何が足りないか」を1つだけもらう。</Step>
+  <Step no="3" title="Inputを足す">不足した資料・条件・読み手情報を追加する。</Step>
+  <Step no="4" title="v2にする">直した版を共有フォルダに保存し、リンクを控える。</Step>
+</StepFlow>
+
+## 提出前チェックリスト
+
+- 目的が1文で書けている
+- 読み手が誰か分かる
+- 参照入力が明記されている
+- v1からv2で何を直したか言える
+- 共有フォルダに保存済み
+
+## 記録
+
+- 詰まりと解決は`learning-log/`へ
+- 成果物リンクは講師側で最終集約する
+
+<Callout variant="tip" title="次へのつなぎ">
+  ここで作ったリンクは、次の仕込みで成果物リンク集に集約する。
+</Callout>
+
+次は [振り返りskill・仕込み（17）](/day-2/showcase/) へ進みます。

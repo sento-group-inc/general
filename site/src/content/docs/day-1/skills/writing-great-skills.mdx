@@ -1,0 +1,57 @@
+---
+title: writing-great-skills
+description: 予測可能に動くSkillを書くための設計原則
+---
+
+import ProgressMap from '../../../../components/ProgressMap.astro';
+
+<ProgressMap current="day1-pm" />
+
+`/writing-great-skills` は、「良いSkillを書くための考え方」を参照するスキルです。  
+Skillは、AIの毎回の動きを完全に固定するものではありません。毎回同じ結果ではなく、毎回同じプロセスを踏ませるためのものです。
+
+元スキル: [writing-great-skills / SKILL.md](https://github.com/mattpocock/skills/blob/main/skills/productivity/writing-great-skills/SKILL.md)
+
+## 何をするスキルか
+
+自分用Skillを作るとき、または既存Skillを直すときに使います。
+
+- いつ呼び出されるべきか
+- 何を本文に書くべきか
+- 何を別ファイルに逃がすべきか
+- 長すぎるSkillをどう分けるか
+- 無駄な文章をどう削るか
+
+## 中心の考え方
+
+良いSkillの目的は、AIの動きを予測しやすくすることです。
+
+| 原則 | 意味 |
+|---|---|
+| Predictability | 毎回同じ結果ではなく、同じプロセスを踏ませる |
+| Information hierarchy | 今すぐ必要な手順と、必要な時だけ読む参照を分ける |
+| Progressive disclosure | 長い説明は別ファイルへ逃がし、必要な時だけ読む |
+| Single source of truth | 同じ意味を複数箇所に書かない |
+| Pruning | 古い説明、重複、効いていない文を削る |
+
+## 通常のプロンプトとの違い
+
+| 通常のプロンプト | Skill |
+|---|---|
+| その場で頑張って書く | 何度も使う進め方として保存する |
+| 長くなるほど毎回つらい | 手順と参照を分けて育てる |
+| 人が毎回思い出す | Skill名で呼び出せる |
+
+一言で言うと: `/writing-great-skills` は「Skillを書くためのSkill」です。自分の仕事の型をAIに渡すときに使います。
+
+## 使うなら
+
+```text
+この手順をSkillにしたい。/writing-great-skills の原則でレビューして。
+```
+
+```text
+このSkillが長くなってきたので、何を別ファイルへ逃がすべきか見て。
+```
+
+次は [Mermaid改善ループ（12）](/day-1/mermaid-flow/) へ進む。

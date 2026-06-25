@@ -1,0 +1,88 @@
+---
+title: Codexを操る（8）
+description: セッション8 — 基本操作、設定、AGENTS.md、Plan/Goal
+---
+
+import ProgressMap from '../../../components/ProgressMap.astro';
+import SectionHead from '../../../components/training/SectionHead.astro';
+import ImageText from '../../../components/training/ImageText.astro';
+import StepFlow from '../../../components/training/StepFlow.astro';
+import Step from '../../../components/training/Step.astro';
+import Callout from '../../../components/training/Callout.astro';
+
+import workmodeShot from '../../../assets/training/codex-workmode-permissions.png';
+import agentsHero from '../../../assets/training/agents-md-hero.png';
+
+<ProgressMap current="day1-pm" />
+
+<SectionHead no="8" title="Codexを操る" subtitle="基本操作、設定、AGENTS.md、Plan/Goal — 2日目に作るための操作土台" />
+
+## このセッションでやること
+
+自由探索のあと、Codexを**操れる状態**にします。明日の業務制作で詰まらないよう、設定・記録・計画の型を体に入れます。
+
+<StepFlow>
+  <Step no="1" title="準備・セットアップ">Codexにログインし、研修フォルダと基本設定を揃える（セッション5で実施済みなら確認）。</Step>
+  <Step no="2" title="セキュリティ設定">学習OFF、権限、ガードレールを確認（セッション6）。</Step>
+  <Step no="3" title="AGENTS.md">失敗も成功もlearning-logに残し、恒久ルールだけ昇格する。</Step>
+  <Step no="4" title="Plan / Goal">作業前に計画し、長めの作業は完了条件つきで進める。</Step>
+</StepFlow>
+
+## 1. 準備・セットアップ
+
+<ImageText
+  imageSrc={workmodeShot.src}
+  imageAlt="作業モードと権限"
+  title="準備・セットアップ"
+  caption="ログイン、研修フォルダ、基本設定、権限をそろえる"
+>
+  <p>
+    Day1の最初に、Codexを使える状態へ揃えます。SharePointの研修フォルダ、<code>learning-log/</code>、<code>outputs/</code>、基本設定を確認します。
+  </p>
+</ImageText>
+
+[準備・セットアップ](/start/prework/) へ進む。
+
+## 2. セキュリティ設定
+
+<ImageText
+  imageSrc={workmodeShot.src}
+  imageAlt="作業モードと権限"
+  title="セキュリティ設定"
+  caption="学習OFF、権限、ガードレール、ダミー違反を確認"
+>
+  <p>
+    何を入れてよいか、どこで止めるかを先に揃えます。権限はデフォルトから始め、削除・送信・上書きは人間が確認します。
+  </p>
+</ImageText>
+
+[セキュリティ設定](/day-1/security/) へ進む。
+
+## 3. AGENTS.mdを学ぼう
+
+<ImageText
+  imageSrc={agentsHero.src}
+  imageAlt="AGENTS.md説明画像"
+  title="AGENTS.mdを学ぼう"
+  caption="失敗も成功もlearning-logに残し、恒久ルールだけ昇格"
+>
+  <p>
+    AGENTS.mdは、Codexへ毎回同じ説明をしなくて済むようにする指示ファイルです。活動ログは入れず、再利用できるルールだけを書きます。
+  </p>
+</ImageText>
+
+[AGENTS.mdでログを貯めて失敗も成功も資産にしよう](/day-1/agents-logging/) へ進む。
+
+## 4. Plan / Goalを使う
+
+<Callout variant="tip" title="暴走・的外れを防ぐ">
+  `/plan` で作業前に計画を出し、`/goal` で長めの作業を完了条件つきにする。どちらもこの後の演習で実際に貼って使う。
+</Callout>
+
+[Planモードを使う](/day-1/plan-mode/) へ進み、その後 [Goalモードを使う](/day-1/goal-mode/) へ進む。
+
+## 次へ（セッション9）
+
+Codex操作（8）が終わったら、**Inputを増やす**フェーズへ進みます。
+
+次は [Input：プラグイン・音声・写真・資料（9）](/day-1/plugins/) へ進む。（入力手順の詳細は [入力方法](/day-1/input-methods/) ・ [crawl4ai](/day-1/crawl4ai/) を参照）

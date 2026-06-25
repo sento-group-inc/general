@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>AI活用100選 — 研修リンク集</title>
+  <style>
+    :root {
+      --bg: #ffffff;
+      --text: #1a1a1a;
+      --muted: #5c6658;
+      --accent: #486b3b;
+      --accent-soft: #eef3eb;
+      --line: #d9ddd8;
+      --gold: #c58b17;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Hiragino Sans", "Yu Gothic UI", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+    header {
+      padding: 2rem 1.5rem 1rem;
+      border-bottom: 1px solid var(--line);
+      background: linear-gradient(180deg, var(--accent-soft), #fff 70%);
+    }
+    header h1 { margin: 0 0 0.5rem; font-size: 1.6rem; color: var(--accent); }
+    header p { margin: 0; color: var(--muted); max-width: 42rem; }
+    main { max-width: 960px; margin: 0 auto; padding: 1.5rem; }
+    section { margin-bottom: 2rem; }
+    h2 {
+      font-size: 1.1rem;
+      color: var(--accent);
+      border-left: 4px solid var(--gold);
+      padding-left: 0.6rem;
+      margin: 0 0 1rem;
+    }
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 0.75rem;
+      margin-bottom: 1.5rem;
+    }
+    .stat {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 0.75rem 1rem;
+      background: #fafbf9;
+    }
+    .stat strong { display: block; font-size: 1.4rem; color: var(--accent); }
+    .stat span { color: var(--muted); font-size: 0.9rem; }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.95rem;
+    }
+    th, td {
+      border: 1px solid var(--line);
+      padding: 0.6rem 0.75rem;
+      vertical-align: top;
+      text-align: left;
+    }
+    th { background: var(--accent-soft); color: var(--accent); }
+    tr:nth-child(even) td { background: #fcfdfb; }
+    .tag {
+      display: inline-block;
+      padding: 0.1rem 0.45rem;
+      border-radius: 999px;
+      background: var(--accent-soft);
+      color: var(--accent);
+      font-size: 0.8rem;
+      margin-right: 0.25rem;
+    }
+    footer {
+      border-top: 1px solid var(--line);
+      padding: 1rem 1.5rem 2rem;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+    code { background: #f4f6f3; padding: 0.1rem 0.35rem; border-radius: 4px; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>AI活用100選</h1>
+    <p>
+      2日間の learning-log と成果物リンクを一覧化するテンプレートです。
+      講師またはCodexが、参加者フォルダの記録を読み取り、行を追加して使います。
+      100件埋まる必要はありません。研修後も埋め続ける器として使います。
+    </p>
+  </header>
+  <main>
+    <section aria-label="サマリー">
+      <div class="stats">
+        <div class="stat"><strong>15</strong><span>参加者</span></div>
+        <div class="stat"><strong>32</strong><span>記録エントリ</span></div>
+        <div class="stat"><strong>18</strong><span>成果物リンク</span></div>
+        <div class="stat"><strong>11</strong><span>詰まり→解決</span></div>
+      </div>
+    </section>
+
+    <section aria-label="学びログ">
+      <h2>learning-log から拾った学び</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>氏名</th>
+            <th>できたこと</th>
+            <th>詰まったこと</th>
+            <th>直し方 / 使えた型</th>
+            <th>タグ</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>例: 山田</td>
+            <td>音声Inputで業務メモを整理できた</td>
+            <td>権限確認で停止</td>
+            <td>デフォルト権限のまま読み取りのみに変更</td>
+            <td><span class="tag">Input</span><span class="tag">Day1</span></td>
+          </tr>
+          <tr>
+            <td><!-- 参加者名 --></td>
+            <td><!-- できたこと --></td>
+            <td><!-- 詰まったこと --></td>
+            <td><!-- どう直したか --></td>
+            <td><!-- タグ --></td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section aria-label="成果物">
+      <h2>成果物リンク</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>氏名</th>
+            <th>業務テーマ</th>
+            <th>成果物</th>
+            <th>v1→v2で変わったこと</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>例: 佐藤</td>
+            <td>月次報告の下書き</td>
+            <td><a href="#">SharePointリンク</a></td>
+            <td>過去3ヶ月分をInputに足して構成が具体化</td>
+          </tr>
+          <tr>
+            <td><!-- --></td>
+            <td><!-- --></td>
+            <td><!-- --></td>
+            <td><!-- --></td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+  </main>
+  <footer>
+    生成手順: 各参加者の <code>learning-log/</code> と SharePoint 成果物フォルダを読み、上表の例行を実データ行に置き換える。
+    テンプレ正本: <code>/downloads/ai-100-list-template.html</code>
+  </footer>
+</body>
+</html>

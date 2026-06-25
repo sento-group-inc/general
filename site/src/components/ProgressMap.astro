@@ -1,0 +1,39 @@
+---
+interface Props {
+	current:
+		| 'start'
+		| 'day1-am'
+		| 'day1-pm'
+		| 'day2'
+		| 'extra'
+		| 'reference';
+	variant?: 'full' | 'mini';
+}
+
+const { current, variant = 'full' } = Astro.props;
+
+const items = [
+	{ key: 'start', label: 'START', text: '事前準備と全体像' },
+	{ key: 'day1-am', label: 'DAY 1 AM', text: '設定確認と自由探索' },
+	{ key: 'day1-pm', label: 'DAY 1 PM', text: '改善体験（IPOA）' },
+	{ key: 'day2', label: 'DAY 2', text: '制作と共有' },
+	{ key: 'extra', label: 'EXTRA', text: '任意課題' },
+];
+---
+
+<section
+	class:list={['progress-map', variant === 'mini' && 'is-mini']}
+	aria-label="2日間コンセプトマップ"
+>
+	{variant === 'full' && <p class="progress-map-title">2日間コンセプトマップ（今ここ）</p>}
+	<ol class="progress-map-list">
+		{
+			items.map((item) => (
+				<li class={item.key === current ? 'is-current' : undefined}>
+					<span class="progress-map-label">{item.label}</span>
+					{variant === 'full' && <span class="progress-map-text">{item.text}</span>}
+				</li>
+			))
+		}
+	</ol>
+</section>
