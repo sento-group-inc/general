@@ -1341,6 +1341,33 @@
       margin-left: auto;
     }
 
+    .peek-share {
+      align-items: center;
+      background: var(--surface);
+      border: 1px solid var(--rule-dark);
+      border-radius: 4px;
+      color: var(--green-dark);
+      cursor: pointer;
+      display: inline-flex;
+      font-size: 10px;
+      font-weight: 700;
+      gap: 6px;
+      padding: 7px 11px;
+      position: absolute;
+      right: 62px;
+      top: 20px;
+    }
+
+    .peek-share:hover {
+      background: var(--green-pale);
+      border-color: var(--green);
+    }
+
+    .peek-share svg {
+      height: 13px;
+      width: 13px;
+    }
+
     .peek-back {
       background: transparent;
       border: 0;
@@ -2726,6 +2753,13 @@
   <div class="peek-backdrop" id="docBackdrop" role="presentation">
     <aside class="peek" role="dialog" aria-modal="true" aria-labelledby="docTitle">
       <button class="modal-close" id="docClose" type="button" aria-label="閉じる">×</button>
+      <button class="peek-share" id="docShare" type="button">
+        <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+          <path d="M10 14a5 5 0 0 0 7 0l3-3a5 5 0 0 0-7-7l-1.5 1.5"></path>
+          <path d="M14 10a5 5 0 0 0-7 0l-3 3a5 5 0 0 0 7 7l1.5-1.5"></path>
+        </svg>
+        リンクをコピー
+      </button>
       <span class="modal-kicker" id="docKicker">SIDE PEEK</span>
       <h3 id="docTitle">文書</h3>
       <div class="doc-view" id="docBody"></div>
@@ -3152,9 +3186,12 @@
       meetings: "会議（3）"
     };
 
+    let currentPeek = null;
+
     function openPeek(kind) {
       const wasOpen = docBackdrop.classList.contains("open");
       if (!wasOpen) docLastFocused = document.activeElement;
+      currentPeek = kind;
       docBody.innerHTML = "";
       const template = document.getElementById(`tpl-${kind}`);
       if (template) {
@@ -3176,6 +3213,7 @@
       docBackdrop.classList.add("open");
       document.body.style.overflow = "hidden";
       docBackdrop.querySelector(".peek").scrollTop = 0;
+      history.replaceState(null, "", `#view=${kind}`);
       docClose.focus();
     }
 
@@ -3190,10 +3228,22 @@
     }
 
     function closeDocViewer() {
+      if (!docBackdrop.classList.contains("open")) return;
       docBackdrop.classList.remove("open");
       document.body.style.overflow = "";
+      currentPeek = null;
+      if (location.hash.startsWith("#view=")) {
+        history.replaceState(null, "", location.pathname + location.search);
+      }
       if (docLastFocused) docLastFocused.focus();
     }
+
+    document.getElementById("docShare").addEventListener("click", async () => {
+      if (!currentPeek) return;
+      const url = `${location.origin}${location.pathname}${location.search}#view=${currentPeek}`;
+      const copied = await copyText(url);
+      showToast(copied ? "このページへのリンクをコピーしました" : "コピーできませんでした");
+    });
 
     // カード・ツリー・ピーク内のボタンすべてを委譲で拾う（ピーク内に後から入る要素にも効かせる）
     document.addEventListener("click", (event) => {
@@ -3224,6 +3274,14 @@
     docBackdrop.addEventListener("click", (event) => {
       if (event.target === docBackdrop) closeDocViewer();
     });
+
+    // #view=policy のようなURLで直接そのピークを開けるようにする（共有用ディープリンク）
+    function openFromHash() {
+      const match = location.hash.match(/^#view=([\w-]+)$/);
+      if (match) openPeek(match[1]);
+    }
+    window.addEventListener("hashchange", openFromHash);
+    openFromHash();
 
     // 同じアンカーを2回クリックしても再スクロールさせる（hash不変時は既定動作が無反応になるため）
     document.addEventListener("click", (event) => {
