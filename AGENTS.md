@@ -1,10 +1,3 @@
-<claude-mem-context>
-# Memory Context
-
-# [general] recent context, 2026-06-25 12:29pm GMT+9
-
-No previous sessions found.
-</claude-mem-context>
 
 ## Autonomous Execution Policy (general)
 

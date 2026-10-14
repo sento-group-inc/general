@@ -5,12 +5,8 @@
       "path": "."
     },
     {
-      "name": "wajima（個人脳）",
-      "path": "../wajima"
-    },
-    {
-      "name": "sento-team（チーム脳）",
-      "path": "../sento-team"
+      "name": "bantou（エージェント基盤）",
+      "path": "../bantou"
     },
     {
       "name": "Aigassyuku06（参照）",
